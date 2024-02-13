@@ -14,6 +14,7 @@ import {useWeather} from './src/hooks/useWeather.ts';
 import Inputs from './src/components/Inputs.tsx';
 import TopButtons from './src/components/TopButtons.tsx';
 import TimeAndLocation from './src/components/TimeAndLocation.tsx';
+import TemperatureAndDetails from './src/components/TemperatureAndDetails.tsx';
 // import {useTranslation} from 'react-i18next';
 
 // type SectionProps = PropsWithChildren<{
@@ -43,7 +44,13 @@ function App(): React.JSX.Element {
           <TopButtons setQuery={setQuery} />
           <Inputs setQuery={setQuery} setFahrenheit={setFahrenheit} />
           {!isLoading && weather !== undefined ? (
-            <TimeAndLocation weather={weather} isFahrenheit={isFahrenheit} />
+            <>
+              <TimeAndLocation weather={weather} isFahrenheit={isFahrenheit} />
+              <TemperatureAndDetails
+                weather={weather}
+                isFahrenheit={isFahrenheit}
+              />
+            </>
           ) : (
             <View>
               <Text>{isLoading}</Text>

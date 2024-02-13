@@ -2,6 +2,11 @@ import React from 'react';
 import {formatToLocalTime} from '../helpers/helpers';
 import {WeatherType} from '../types/Types';
 import {StyleSheet, Text, View} from 'react-native';
+import {
+  globalFontWeight,
+  globalStyles,
+  globalTextColors,
+} from '../Style/GlobalStyles.tsx';
 
 export type TimeAndLocationPropsType = {
   weather: WeatherType;
@@ -15,7 +20,8 @@ export default function TimeAndLocation({
   return (
     <>
       <View style={styles.timeSection}>
-        <Text style={styles.time}>
+        <Text style={[globalStyles.textMLightColor, globalFontWeight.light]}>
+          {' '}
           {formatToLocalTime(localtime_epoch, tz_id, undefined, isFahrenheit)}
         </Text>
       </View>
@@ -33,22 +39,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginVertical: 24,
   },
-  time: {
-    color: '#fff',
-    alignItems: 'center',
-    fontSize: 16,
-    fontWeight: '200',
-  },
   countySection: {
     alignItems: 'center',
     justifyContent: 'center',
     marginVertical: 12,
   },
   country: {
-    color: '#fff',
+    color: globalTextColors.lightColor.color,
     alignItems: 'center',
     fontSize: 24,
-    fontWeight: '600',
+    fontWeight: globalFontWeight.extraBold.fontWeight,
     overflow: 'hidden',
     flexWrap: 'nowrap',
   },
