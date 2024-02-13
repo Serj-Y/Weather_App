@@ -1,7 +1,7 @@
-import React from "react";
-import { formatToLocalTime } from "../utils/helpers";
-import { WeatherType } from "../types/Types";
-
+import React from 'react';
+import {formatToLocalTime} from '../helpers/helpers';
+import {WeatherType} from '../types/Types';
+import {StyleSheet, Text, View} from 'react-native';
 
 export type TimeAndLocationPropsType = {
   weather: WeatherType;
@@ -9,21 +9,47 @@ export type TimeAndLocationPropsType = {
 };
 
 export default function TimeAndLocation({
-  weather: { localtime_epoch, tz_id, name, country },
+  weather: {localtime_epoch, tz_id, name, country},
   isFahrenheit,
 }: TimeAndLocationPropsType) {
   return (
-    <div>
-      <div className="flex items-center justify-center my-6">
-        <p className=" text-white text-xl font-extralight">
+    <>
+      <View style={styles.timeSection}>
+        <Text style={styles.time}>
           {formatToLocalTime(localtime_epoch, tz_id, undefined, isFahrenheit)}
-        </p>
-      </div>
-      <div className="flex items-center justify-center my-3">
-        <p className=" text-white text-3xl font-medium">
+        </Text>
+      </View>
+      <View style={styles.countySection}>
+        <Text style={styles.country}>
           {name}, {country}
-        </p>
-      </div>
-    </div>
+        </Text>
+      </View>
+    </>
   );
 }
+const styles = StyleSheet.create({
+  timeSection: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginVertical: 24,
+  },
+  time: {
+    color: '#fff',
+    alignItems: 'center',
+    fontSize: 16,
+    fontWeight: '200',
+  },
+  countySection: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginVertical: 12,
+  },
+  country: {
+    color: '#fff',
+    alignItems: 'center',
+    fontSize: 24,
+    fontWeight: '600',
+    overflow: 'hidden',
+    flexWrap: 'nowrap',
+  },
+});

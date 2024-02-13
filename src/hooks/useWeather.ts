@@ -23,7 +23,6 @@ export const useWeather = (query: string) => {
         setWeather(res?.data);
       })
       .catch(error => {
-        // toast.error(t(error.message));
         console.log(error);
         setIsError(true);
       })

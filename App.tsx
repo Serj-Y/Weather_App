@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import type {PropsWithChildren} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -14,6 +13,7 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {useWeather} from './src/hooks/useWeather.ts';
 import Inputs from './src/components/Inputs.tsx';
 import TopButtons from './src/components/TopButtons.tsx';
+import TimeAndLocation from './src/components/TimeAndLocation.tsx';
 // import {useTranslation} from 'react-i18next';
 
 // type SectionProps = PropsWithChildren<{
@@ -42,6 +42,13 @@ function App(): React.JSX.Element {
         <View style={styles.appSection}>
           <TopButtons setQuery={setQuery} />
           <Inputs setQuery={setQuery} setFahrenheit={setFahrenheit} />
+          {!isLoading && weather !== undefined ? (
+            <TimeAndLocation weather={weather} isFahrenheit={isFahrenheit} />
+          ) : (
+            <View>
+              <Text>{isLoading}</Text>
+            </View>
+          )}
         </View>
       </View>
 
