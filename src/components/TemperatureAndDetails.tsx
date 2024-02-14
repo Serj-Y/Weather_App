@@ -76,10 +76,9 @@ export default function TemperatureAndDetails({
           </View>
           <View style={styles.forecastDataSection}>
             {/*<BsWind size={18} className="mr-1" />*/}
-
             <Text style={globalStyles.textSLightColor}>
-              <Text style={globalFontWeight.light}>{t('Wind')}:</Text>
-              {kmToMph(wind_kph, isFahrenheit)}{' '}
+              <Text style={globalFontWeight.light}>{t('Wind')}:</Text>{' '}
+              {kmToMph(wind_kph, isFahrenheit)}
               {isFahrenheit ? t('WindSpeedMph') : t('WindSpeedKph')}
             </Text>
           </View>

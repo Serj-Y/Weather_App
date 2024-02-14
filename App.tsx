@@ -15,18 +15,16 @@ import Inputs from './src/components/Inputs.tsx';
 import TopButtons from './src/components/TopButtons.tsx';
 import TimeAndLocation from './src/components/TimeAndLocation.tsx';
 import TemperatureAndDetails from './src/components/TemperatureAndDetails.tsx';
+import Forecast from './src/components/Forecast.tsx';
+import {useTranslation} from 'react-i18next';
 // import {useTranslation} from 'react-i18next';
-
-// type SectionProps = PropsWithChildren<{
-//   title: string;
-// }>;
 
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
   const [query, setQuery] = useState('Kyiv');
   const [isFahrenheit, setFahrenheit] = useState(false);
   const {isLoading, weather} = useWeather(query);
-  // const {t} = useTranslation();
+  const {t} = useTranslation();
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
@@ -49,6 +47,16 @@ function App(): React.JSX.Element {
               <TemperatureAndDetails
                 weather={weather}
                 isFahrenheit={isFahrenheit}
+              />
+              <Forecast
+                isFahrenheit={isFahrenheit}
+                items={weather.fiveHourForecast}
+                title={t('Hourly')}
+              />
+              <Forecast
+                isFahrenheit={isFahrenheit}
+                items={weather.dailyForecast}
+                title={t('Daily')}
               />
             </>
           ) : (
