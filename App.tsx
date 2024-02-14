@@ -38,41 +38,43 @@ function App(): React.JSX.Element {
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <View style={styles.mainContainer}>
-        <View style={styles.appSection}>
-          <TopButtons setQuery={setQuery} />
-          <Inputs setQuery={setQuery} setFahrenheit={setFahrenheit} />
-          {!isLoading && weather !== undefined ? (
-            <>
-              <TimeAndLocation weather={weather} isFahrenheit={isFahrenheit} />
-              <TemperatureAndDetails
-                weather={weather}
-                isFahrenheit={isFahrenheit}
-              />
-              {/*<Forecast*/}
-              {/*  isFahrenheit={isFahrenheit}*/}
-              {/*  items={weather.fiveHourForecast}*/}
-              {/*  title={t('Hourly')}*/}
-              {/*/>*/}
-              {/*<Forecast*/}
-              {/*  isFahrenheit={isFahrenheit}*/}
-              {/*  items={weather.dailyForecast}*/}
-              {/*  title={t('Daily')}*/}
-              {/*/>*/}
-              <Footer />
-            </>
-          ) : (
-            <View>
-              <Text>{isLoading}</Text>
-            </View>
-          )}
-        </View>
-      </View>
-
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}
-      />
+        style={backgroundStyle}>
+        <View style={styles.mainContainer}>
+          <View style={styles.appSection}>
+            <TopButtons setQuery={setQuery} />
+            <Inputs setQuery={setQuery} setFahrenheit={setFahrenheit} />
+            {!isLoading && weather !== undefined ? (
+              <>
+                <TimeAndLocation
+                  weather={weather}
+                  isFahrenheit={isFahrenheit}
+                />
+                <TemperatureAndDetails
+                  weather={weather}
+                  isFahrenheit={isFahrenheit}
+                />
+                <Forecast
+                  isFahrenheit={isFahrenheit}
+                  items={weather.fiveHourForecast}
+                  title={t('Hourly')}
+                />
+                <Forecast
+                  isFahrenheit={isFahrenheit}
+                  items={weather.dailyForecast}
+                  title={t('Daily')}
+                />
+                <Footer />
+              </>
+            ) : (
+              <View>
+                <Text>{isLoading}</Text>
+              </View>
+            )}
+          </View>
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }

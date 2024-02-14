@@ -2,7 +2,14 @@ import React, {useState} from 'react';
 import {useTranslation} from 'react-i18next';
 // import {GoSearch, GoLocation} from 'react-icons/go';
 import {toast} from 'react-toastify';
-import {Button, StyleSheet, Text, TextInput, View} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import {globalStyles} from '../Style/GlobalStyles.tsx';
 
 type PropsType = {
   setFahrenheit: (value: boolean) => void;
@@ -50,28 +57,31 @@ export default function Inputs({setQuery, setFahrenheit}: PropsType) {
         <TextInput
           value={city}
           onChangeText={value => setCity(value)}
-          placeholder={t('Searchcity')}
+          placeholder={t('City')}
           style={styles.input}
+          autoCapitalize={'words'}
         />
-        <View style={styles.searchButton}>
-          <Button title={'Se'} onPress={handleSearchClick} />
-        </View>
-        <View style={styles.geolocationButton}>
-          <Button title={'Ge'} onPress={() => {}} />
-        </View>
+        <TouchableOpacity
+          style={styles.searchButton}
+          onPress={handleSearchClick}>
+          <Text style={globalStyles.textMLightColor}>Se</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.geolocationButton} onPress={() => {}}>
+          <Text style={globalStyles.textMLightColor}>Ge</Text>
+        </TouchableOpacity>
       </View>
       <View style={styles.temperatureUnitSection}>
-        <Button
+        <TouchableOpacity
           onPress={() => handleCelsiusClick()}
-          title={'°C'}
-          disabled={tempUnits === 'C'}
-        />
-        <Text>|</Text>
-        <Button
+          disabled={tempUnits === 'C'}>
+          <Text style={globalStyles.textMLightColor}>°C </Text>
+        </TouchableOpacity>
+        <Text style={globalStyles.textMLightColor}>|</Text>
+        <TouchableOpacity
           onPress={() => handleFahrenheitClick()}
-          disabled={tempUnits === 'F'}
-          title={'°F'}
-        />
+          disabled={tempUnits === 'F'}>
+          <Text style={globalStyles.textMLightColor}>°F</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -89,22 +99,26 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   input: {
-    fontSize: 20,
+    fontSize: globalStyles.textLLightColor.fontSize,
     lineHeight: 28,
-    fontWeight: '300',
+    fontWeight: globalStyles.textLLightColor.fontWeight,
     width: '70%',
-    backgroundColor: '#fff',
+    backgroundColor: globalStyles.textLLightColor.color,
     height: 36,
+    marginRight: 8,
   },
   searchButton: {
     width: '15%',
+    justifyContent: 'center',
   },
   geolocationButton: {
     width: '15%',
+    justifyContent: 'center',
   },
   temperatureUnitSection: {
     flexDirection: 'row',
     width: '25%',
-    justifyContent: 'space-between',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
   },
 });

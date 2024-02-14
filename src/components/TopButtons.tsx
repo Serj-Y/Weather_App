@@ -1,5 +1,6 @@
 import React from 'react';
-import {Button, StyleSheet, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {globalStyles} from '../Style/GlobalStyles.tsx';
 
 type TopButtonType = {
   setQuery: (value: string) => void;
@@ -28,11 +29,9 @@ export default function TopButtons({setQuery}: TopButtonType) {
   return (
     <View style={styles.topButtons}>
       {cites.map(city => (
-        <Button
-          key={city.id}
-          onPress={() => setQuery(city.title)}
-          title={city.title}
-        />
+        <TouchableOpacity onPress={() => setQuery(city.title)}>
+          <Text style={globalStyles.textMLightColor}>{city.title}</Text>
+        </TouchableOpacity>
       ))}
     </View>
   );
@@ -45,6 +44,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginVertical: 8,
+    margin: 6,
   },
 });
