@@ -17,6 +17,7 @@ import TimeAndLocation from './src/components/TimeAndLocation.tsx';
 import TemperatureAndDetails from './src/components/TemperatureAndDetails.tsx';
 import Forecast from './src/components/Forecast.tsx';
 import {useTranslation} from 'react-i18next';
+import Footer from './src/components/Footer.tsx';
 // import {useTranslation} from 'react-i18next';
 
 function App(): React.JSX.Element {
@@ -48,16 +49,17 @@ function App(): React.JSX.Element {
                 weather={weather}
                 isFahrenheit={isFahrenheit}
               />
-              <Forecast
-                isFahrenheit={isFahrenheit}
-                items={weather.fiveHourForecast}
-                title={t('Hourly')}
-              />
-              <Forecast
-                isFahrenheit={isFahrenheit}
-                items={weather.dailyForecast}
-                title={t('Daily')}
-              />
+              {/*<Forecast*/}
+              {/*  isFahrenheit={isFahrenheit}*/}
+              {/*  items={weather.fiveHourForecast}*/}
+              {/*  title={t('Hourly')}*/}
+              {/*/>*/}
+              {/*<Forecast*/}
+              {/*  isFahrenheit={isFahrenheit}*/}
+              {/*  items={weather.dailyForecast}*/}
+              {/*  title={t('Daily')}*/}
+              {/*/>*/}
+              <Footer />
             </>
           ) : (
             <View>
