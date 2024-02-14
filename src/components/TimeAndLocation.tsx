@@ -37,12 +37,12 @@ const styles = StyleSheet.create({
   timeSection: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginVertical: 24,
+    marginVertical: 8,
   },
   countySection: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginVertical: 12,
+    marginVertical: 6,
   },
   country: {
     color: globalTextColors.lightColor.color,

@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import {useTranslation} from 'react-i18next';
-// import {GoSearch, GoLocation} from 'react-icons/go';
 import {toast} from 'react-toastify';
 import {
   StyleSheet,
@@ -9,7 +8,8 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {globalStyles} from '../Style/GlobalStyles.tsx';
+import {globalStyles, globalTextColors} from '../Style/GlobalStyles.tsx';
+import Icon from 'react-native-vector-icons/Feather';
 
 type PropsType = {
   setFahrenheit: (value: boolean) => void;
@@ -61,13 +61,21 @@ export default function Inputs({setQuery, setFahrenheit}: PropsType) {
           style={styles.input}
           autoCapitalize={'words'}
         />
-        <TouchableOpacity
-          style={styles.searchButton}
-          onPress={handleSearchClick}>
-          <Text style={globalStyles.textMLightColor}>Se</Text>
+        <TouchableOpacity style={styles.searchButton}>
+          <Icon
+            name="search"
+            size={18}
+            color={globalTextColors.lightColor.color}
+            onPress={handleSearchClick}
+          />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.geolocationButton} onPress={() => {}}>
-          <Text style={globalStyles.textMLightColor}>Ge</Text>
+        <TouchableOpacity style={styles.geolocationButton}>
+          <Icon
+            name="map-pin"
+            size={18}
+            color={globalTextColors.lightColor.color}
+            onPress={() => {}}
+          />
         </TouchableOpacity>
       </View>
       <View style={styles.temperatureUnitSection}>

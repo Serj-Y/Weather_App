@@ -16,6 +16,19 @@ export const globalFontWeight = StyleSheet.create({
     fontWeight: '600',
   },
 });
+export const globalIconSize = StyleSheet.create({
+  light: {
+    width: 42,
+    height: 42,
+    color: globalTextColors.lightColor.color,
+  },
+  bold: {
+    fontWeight: '500',
+  },
+  extraBold: {
+    fontWeight: '600',
+  },
+});
 export const globalStyles = StyleSheet.create({
   textSLightColor: {
     color: globalTextColors.lightColor.color,

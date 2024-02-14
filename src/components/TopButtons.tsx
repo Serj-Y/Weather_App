@@ -37,13 +37,12 @@ export default function TopButtons({setQuery}: TopButtonType) {
   );
 }
 
-// <div className="flex justify-between items-center my-6">
-
 const styles = StyleSheet.create({
   topButtons: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     margin: 6,
+    marginTop: 24,
   },
 });

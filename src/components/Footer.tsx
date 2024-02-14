@@ -1,10 +1,9 @@
 import React, {useState} from 'react';
 import {useTranslation} from 'react-i18next';
-import {RiEarthFill, RiGithubFill} from 'react-icons/ri';
-import {toast} from 'react-toastify';
 import {Linking, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import HrLine from '../helpers/ui/HrLine.tsx';
-import {globalStyles} from '../Style/GlobalStyles.tsx';
+import {globalStyles, globalTextColors} from '../Style/GlobalStyles.tsx';
+import Icon from 'react-native-vector-icons/Feather';
 
 export default function Footer() {
   const {t, i18n} = useTranslation();
@@ -26,24 +25,29 @@ export default function Footer() {
       <View style={styles.footerSection}>
         <View style={styles.contactsSection}>
           <Text style={globalStyles.textSLightColor}>{t('ContactUs')}: </Text>
-          {/*<RiGithubFill className="  text-white ml-1 cursor-pointer transition ease-out hover:scale-125" />*/}
-          <Text
-            style={globalStyles.textSLightColor}
-            onPress={() => Linking.openURL('https://github.com/Serj-Y')}>
-            GitHub
-          </Text>
+          <Icon
+            name="github"
+            size={16}
+            color={globalTextColors.lightColor.color}
+            onPress={() => Linking.openURL('https://github.com/Serj-Y')}
+          />
         </View>
         <Text style={globalStyles.textSLightColor}>
           © 2023 {t('AllRights')}
         </Text>
-        <View style={styles.footerSection}>
-          {/*<RiEarthFill className="text-white mr-1" />*/}
+        <View style={styles.changeLanguageSection}>
+          <Icon
+            name="globe"
+            size={16}
+            color={globalTextColors.lightColor.color}
+            onPress={() => Linking.openURL('https://github.com/Serj-Y')}
+          />
           <TouchableOpacity
             disabled={lang === 'en'}
             onPress={handleChangeLanguageToEN}>
             <Text style={globalStyles.textSLightColor}> EN </Text>
           </TouchableOpacity>
-          <Text style={globalStyles.textMLightColor}>|</Text>
+          <Text style={globalStyles.textSLightColor}>|</Text>
           <TouchableOpacity
             disabled={lang === 'ua'}
             onPress={handleChangeLanguageToUA}>
@@ -60,6 +64,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    marginBottom: 8,
+  },
+  changeLanguageSection: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   changeLanguage: {
     fontSize: globalStyles.textMLightColor.fontSize,

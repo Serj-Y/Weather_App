@@ -37,8 +37,10 @@ export default function Forecast({title, items, isFahrenheit}: PropsType) {
                 ? convertFrom12To24Format(item.title, isFahrenheit)
                 : item.title}
             </Text>
-            {/*<Image source={{uri: item.icon}} />*/}
-            {/*<img className="w-12 my-2" src={item.icon} alt="forecastImg" />*/}
+            <Image
+              style={{width: 48, height: 48, margin: 4}}
+              source={{uri: `https:${item.icon}`}}
+            />
             <Text style={[globalStyles.textSLightColor, globalFontWeight.bold]}>
               {celsiusToFahrenheit(item.temp, isFahrenheit)}°
             </Text>
@@ -57,6 +59,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexGrow: 1,
     justifyContent: 'space-between',
+    alignItems: 'center',
   },
   title: {
     flexDirection: 'column',
