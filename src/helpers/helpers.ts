@@ -30,10 +30,10 @@ export const convertFrom12To24Format = (
 export const celsiusToFahrenheit = (celsius: number, isFahrenheit: boolean) => {
   if (isFahrenheit) {
     const tempF = celsius * (9 / 5) + 32;
-    return tempF.toFixed();
+    return tempF.toFixed() + '°F';
   } else {
     const tempC = celsius;
-    return tempC.toFixed();
+    return tempC.toFixed() + '°C';
   }
 };
 

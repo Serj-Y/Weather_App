@@ -42,7 +42,7 @@ export default function Forecast({title, items, isFahrenheit}: PropsType) {
               source={{uri: `https:${item.icon}`}}
             />
             <Text style={[globalStyles.textSLightColor, globalFontWeight.bold]}>
-              {celsiusToFahrenheit(item.temp, isFahrenheit)}°
+              {celsiusToFahrenheit(item.temp, isFahrenheit)}
             </Text>
           </View>
         ))}

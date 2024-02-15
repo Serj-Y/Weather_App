@@ -56,7 +56,7 @@ export default function TemperatureAndDetails({
           source={{uri: `https:${icon}`}}
         />
         <Text style={globalStyles.textXLLightColor}>
-          {celsiusToFahrenheit(temp_c, isFahrenheit)}°
+          {celsiusToFahrenheit(temp_c, isFahrenheit)}
         </Text>
         <View style={styles.forecastDetailsSection}>
           <View style={styles.forecastDataSection}>
@@ -67,7 +67,7 @@ export default function TemperatureAndDetails({
             />
             <Text style={globalStyles.textSLightColor}>
               <Text style={globalFontWeight.light}> {t('Realfeel')}: </Text>
-              {celsiusToFahrenheit(feelslike_c, isFahrenheit)}°
+              {celsiusToFahrenheit(feelslike_c, isFahrenheit)}
             </Text>
           </View>
           <View style={styles.forecastDataSection}>
@@ -101,11 +101,8 @@ export default function TemperatureAndDetails({
           size={16}
           color={globalTextColors.lightColor.color}
         />
-        <Text style={[globalStyles.textSLightColor, globalFontWeight.light]}>
-          {t('Rise')}:{' '}
-          <Text style={globalFontWeight.bold}>
-            {convertFrom12To24Format(sunrise, isFahrenheit)}
-          </Text>
+        <Text style={[globalStyles.textSLightColor, globalFontWeight.bold]}>
+          {convertFrom12To24Format(sunrise, isFahrenheit)}
         </Text>
         <Text style={globalStyles.textSLightColor}>|</Text>
         <Icon
@@ -113,11 +110,8 @@ export default function TemperatureAndDetails({
           size={16}
           color={globalTextColors.lightColor.color}
         />
-        <Text style={[globalStyles.textSLightColor, globalFontWeight.light]}>
-          {t('Max')}:{' '}
-          <Text style={[globalFontWeight.bold]}>
-            {celsiusToFahrenheit(maxtemp_c, isFahrenheit)}°
-          </Text>
+        <Text style={[globalStyles.textSLightColor, globalFontWeight.bold]}>
+          {celsiusToFahrenheit(maxtemp_c, isFahrenheit)}
         </Text>
         <Text style={globalStyles.textSLightColor}>|</Text>
         <Icon
@@ -125,11 +119,8 @@ export default function TemperatureAndDetails({
           size={16}
           color={globalTextColors.lightColor.color}
         />
-        <Text style={[globalStyles.textSLightColor, globalFontWeight.light]}>
-          {t('Min')}:{' '}
-          <Text style={[globalFontWeight.bold]}>
-            {celsiusToFahrenheit(mintemp_c, isFahrenheit)}°
-          </Text>
+        <Text style={[globalStyles.textSLightColor, globalFontWeight.bold]}>
+          {celsiusToFahrenheit(mintemp_c, isFahrenheit)}
         </Text>
         <Text style={globalStyles.textSLightColor}>|</Text>
         <Icon
@@ -138,7 +129,6 @@ export default function TemperatureAndDetails({
           color={globalTextColors.lightColor.color}
         />
         <Text style={[globalStyles.textSLightColor, globalFontWeight.light]}>
-          {t('Set')}:{' '}
           <Text style={[globalFontWeight.bold]}>
             {convertFrom12To24Format(sunset, isFahrenheit)}
           </Text>
@@ -175,7 +165,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     alignItems: 'center',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     marginVertical: 8,
     paddingHorizontal: 8,
   },

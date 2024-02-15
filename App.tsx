@@ -77,11 +77,7 @@ function App(): React.JSX.Element {
           <Footer />
         </View>
       </ScrollView>
-      <ToastManager
-        animationStyle={'rightInOut'}
-        style={{width: '100%'}}
-        positionValue={0}
-      />
+      <ToastManager animationStyle={'rightInOut'} style={styles.toast} />
     </SafeAreaView>
   );
 }
@@ -101,8 +97,10 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '400',
   },
-  highlight: {
-    fontWeight: '700',
+  toast: {
+    position: 'absolute',
+    top: '3.5%',
+    width: '100%',
   },
 });
 
