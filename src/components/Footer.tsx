@@ -4,6 +4,7 @@ import {Linking, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import HrLine from '../helpers/ui/HrLine.tsx';
 import {globalStyles, globalTextColors} from '../Style/GlobalStyles.tsx';
 import Icon from 'react-native-vector-icons/Feather';
+import {Toast} from 'toastify-react-native';
 
 export default function Footer() {
   const {t, i18n} = useTranslation();
@@ -11,12 +12,12 @@ export default function Footer() {
 
   const handleChangeLanguageToEN = () => {
     i18n.changeLanguage('en');
-    // toast.info(t('ChangeLang'));
+    Toast.success(t('ChangeLang'));
     setLang('en');
   };
   const handleChangeLanguageToUA = () => {
     i18n.changeLanguage('ua');
-    // toast.info(t('ChangeLang'));
+    Toast.success(t('ChangeLang'));
     setLang('ua');
   };
   return (

@@ -173,8 +173,9 @@ const styles = StyleSheet.create({
   },
   forecastDataBottomSection: {
     flexDirection: 'row',
+    flexWrap: 'wrap',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
     marginVertical: 8,
     paddingHorizontal: 8,
   },

@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import {useTranslation} from 'react-i18next';
-import {toast} from 'react-toastify';
 import {
   StyleSheet,
   Text,
@@ -11,6 +10,7 @@ import {
 import {globalStyles, globalTextColors} from '../Style/GlobalStyles.tsx';
 import Icon from 'react-native-vector-icons/Feather';
 import Geolocation from 'react-native-geolocation-service';
+import {Toast} from 'toastify-react-native';
 
 type PropsType = {
   setFahrenheit: (value: boolean) => void;
@@ -53,13 +53,13 @@ export default function Inputs({
 
   const handleCelsiusClick = () => {
     setFahrenheit(false);
-    toast.info(t('TemperatureC'));
+    Toast.success(t('TemperatureC'), 'top');
     setTempUnits('C');
   };
 
   const handleFahrenheitClick = () => {
     setFahrenheit(true);
-    toast.info(t('TemperatureF'));
+    Toast.success(t('TemperatureF'), 'top');
     setTempUnits('F');
   };
 

@@ -17,6 +17,7 @@ import Forecast from './src/components/Forecast.tsx';
 import {useTranslation} from 'react-i18next';
 import Footer from './src/components/Footer.tsx';
 import Geolocation from 'react-native-geolocation-service';
+import ToastManager from 'toastify-react-native';
 
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -67,15 +68,20 @@ function App(): React.JSX.Element {
                 items={weather.dailyForecast}
                 title={t('Daily')}
               />
-              <Footer />
             </>
           ) : (
             <View>
               <Text>{isLoading}</Text>
             </View>
           )}
+          <Footer />
         </View>
       </ScrollView>
+      <ToastManager
+        animationStyle={'rightInOut'}
+        style={{width: '100%'}}
+        positionValue={0}
+      />
     </SafeAreaView>
   );
 }
