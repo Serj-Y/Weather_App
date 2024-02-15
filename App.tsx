@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -16,13 +16,23 @@ import TemperatureAndDetails from './src/components/TemperatureAndDetails.tsx';
 import Forecast from './src/components/Forecast.tsx';
 import {useTranslation} from 'react-i18next';
 import Footer from './src/components/Footer.tsx';
+import Geolocation from 'react-native-geolocation-service';
 
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
   const [query, setQuery] = useState('Kyiv');
   const [isFahrenheit, setFahrenheit] = useState(false);
+  const [hasLocationPermission, setLocationPermission] = useState('');
   const {isLoading, weather} = useWeather(query);
   const {t} = useTranslation();
+
+  useEffect(() => {
+    const hasPermission = async () => {
+      const permission = await Geolocation.requestAuthorization('whenInUse');
+      setLocationPermission(permission);
+    };
+    hasPermission();
+  }, []);
 
   return (
     <SafeAreaView style={styles.mainContainer}>
@@ -35,7 +45,11 @@ function App(): React.JSX.Element {
         style={styles.mainContainer}>
         <View style={styles.appSection}>
           <TopButtons setQuery={setQuery} />
-          <Inputs setQuery={setQuery} setFahrenheit={setFahrenheit} />
+          <Inputs
+            setQuery={setQuery}
+            setFahrenheit={setFahrenheit}
+            hasLocationPermission={hasLocationPermission}
+          />
           {!isLoading && weather !== undefined ? (
             <>
               <TimeAndLocation weather={weather} isFahrenheit={isFahrenheit} />

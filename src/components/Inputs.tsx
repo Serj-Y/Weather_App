@@ -10,16 +10,23 @@ import {
 } from 'react-native';
 import {globalStyles, globalTextColors} from '../Style/GlobalStyles.tsx';
 import Icon from 'react-native-vector-icons/Feather';
+import Geolocation from 'react-native-geolocation-service';
 
 type PropsType = {
   setFahrenheit: (value: boolean) => void;
   setQuery: (city: string) => void;
+  hasLocationPermission: string;
 };
 
-export default function Inputs({setQuery, setFahrenheit}: PropsType) {
+export default function Inputs({
+  setQuery,
+  setFahrenheit,
+  hasLocationPermission,
+}: PropsType) {
   const {t} = useTranslation();
   const [city, setCity] = useState('');
   const [tempUnits, setTempUnits] = useState('C');
+
   const handleSearchClick = () => {
     if (city !== '') {
       setQuery(city);
@@ -27,17 +34,22 @@ export default function Inputs({setQuery, setFahrenheit}: PropsType) {
     }
   };
 
-  // const handleLocationClick = () => {
-  //   if (navigator.geolocation) {
-  //     navigator.geolocation.getCurrentPosition(position => {
-  //       const lat = position.coords.latitude.toString().slice(0, 6);
-  //       const lon = position.coords.longitude.toString().slice(0, 6);
-  //       const coordinate = `${lat},${lon}`;
-  //
-  //       setQuery(coordinate);
-  //     });
-  //   }
-  // };
+  const handleGeolocationClick = () => {
+    if (hasLocationPermission === 'granted') {
+      Geolocation.getCurrentPosition(
+        position => {
+          const lat = position.coords.latitude;
+          const lon = position.coords.longitude;
+          const coordinate = `${lat},${lon}`;
+          setQuery(coordinate);
+        },
+        error => {
+          console.log(error.code, error.message);
+        },
+        {enableHighAccuracy: true, timeout: 15000, maximumAge: 10000},
+      );
+    }
+  };
 
   const handleCelsiusClick = () => {
     setFahrenheit(false);
@@ -74,7 +86,7 @@ export default function Inputs({setQuery, setFahrenheit}: PropsType) {
             name="map-pin"
             size={18}
             color={globalTextColors.lightColor.color}
-            onPress={() => {}}
+            onPress={handleGeolocationClick}
           />
         </TouchableOpacity>
       </View>
