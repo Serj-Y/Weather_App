@@ -29,7 +29,7 @@ export default function TopButtons({setQuery}: TopButtonType) {
   return (
     <View style={styles.topButtons}>
       {cites.map(city => (
-        <TouchableOpacity onPress={() => setQuery(city.title)}>
+        <TouchableOpacity key={city.id} onPress={() => setQuery(city.title)}>
           <Text style={globalStyles.textMLightColor}>{city.title}</Text>
         </TouchableOpacity>
       ))}

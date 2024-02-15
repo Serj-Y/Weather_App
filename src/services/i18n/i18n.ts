@@ -1,24 +1,30 @@
 import i18next from 'i18next';
 import {initReactI18next} from 'react-i18next';
-// import LanguageDetector from 'i18next-browser-languagedetector';
+import {
+  getLanguage,
+  ReactNativeLanguageDetector,
+} from 'react-native-localization-settings';
+
+const lang = getLanguage();
 
 i18next
+  .use(ReactNativeLanguageDetector)
   .use(initReactI18next)
-  // .use(LanguageDetector)
   .init({
-    fallbackLng: 'en',
+    compatibilityJSON: 'v3',
+    lng: lang,
     resources: {
       en: {
         translation: {
-          Realfeel: 'Real feel:',
-          Humidity: 'Humidity:',
-          Wind: 'Wind:',
+          Realfeel: 'Real feel',
+          Humidity: 'Humidity',
+          Wind: 'Wind',
           WindSpeedKph: 'km/h',
           WindSpeedMph: 'mph',
           Rise: 'Rise:',
-          Max: 'Max:',
-          Min: 'Min:',
-          Set: 'Set:',
+          Max: 'Max',
+          Min: 'Min',
+          Set: 'Set',
 
           Hourly: 'Hourly',
           Daily: 'Daily',
@@ -34,21 +40,21 @@ i18next
           Forecast: 'Forecast',
 
           AllRights: 'All Rights Reserved',
-          ContactUs: 'Contact us:',
+          ContactUs: 'Contact us',
           ChangeLang: 'Language Changed to: English',
         },
       },
       ua: {
         translation: {
-          Realfeel: 'Відчувається як:',
-          Humidity: 'Відносна вологість:',
-          Wind: 'Пориви вітру:',
+          Realfeel: 'Відчувається як',
+          Humidity: 'Відносна вологість',
+          Wind: 'Пориви вітру',
           WindSpeedKph: 'км/год',
           WindSpeedMph: 'міл/год',
-          Rise: 'Схід:',
-          Max: 'Макс:',
-          Min: 'Мін:',
-          Set: 'Захід:',
+          Rise: 'Схід',
+          Max: 'Макс',
+          Min: 'Мін',
+          Set: 'Захід',
 
           Hourly: 'Погодинний',
           Daily: 'Поденный',
@@ -64,7 +70,7 @@ i18next
           Forecast: 'Прогноз',
 
           AllRights: 'Всі права захищені.',
-          ContactUs: "Зв'яжіться з нами:",
+          ContactUs: "Зв'яжіться з нами",
           ChangeLang: 'Мову змінено на: Українську',
         },
       },

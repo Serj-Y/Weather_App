@@ -45,7 +45,6 @@ export default function TemperatureAndDetails({
   isFahrenheit,
 }: PropsType) {
   const {t} = useTranslation();
-  console.log(icon);
   return (
     <>
       <View style={styles.feelsSection}>

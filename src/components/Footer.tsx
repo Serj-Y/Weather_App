@@ -32,9 +32,6 @@ export default function Footer() {
             onPress={() => Linking.openURL('https://github.com/Serj-Y')}
           />
         </View>
-        <Text style={globalStyles.textSLightColor}>
-          © 2023 {t('AllRights')}
-        </Text>
         <View style={styles.changeLanguageSection}>
           <Icon
             name="globe"
