@@ -18,6 +18,7 @@ import {useTranslation} from 'react-i18next';
 import Footer from './src/components/Footer.tsx';
 import Geolocation from 'react-native-geolocation-service';
 import ToastManager from 'toastify-react-native';
+import DiagonalGradient from './src/helpers/ui/gradients/DiagonalGradient.tsx';
 
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -36,49 +37,56 @@ function App(): React.JSX.Element {
   }, []);
 
   return (
-    <SafeAreaView style={styles.mainContainer}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={styles.mainContainer.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={styles.mainContainer}>
-        <View style={styles.appSection}>
-          <TopButtons setQuery={setQuery} />
-          <Inputs
-            setQuery={setQuery}
-            setFahrenheit={setFahrenheit}
-            hasLocationPermission={hasLocationPermission}
-          />
-          {!isLoading && weather !== undefined ? (
-            <>
-              <TimeAndLocation weather={weather} isFahrenheit={isFahrenheit} />
-              <TemperatureAndDetails
-                weather={weather}
-                isFahrenheit={isFahrenheit}
-              />
-              <Forecast
-                isFahrenheit={isFahrenheit}
-                items={weather.fiveHourForecast}
-                title={t('Hourly')}
-              />
-              <Forecast
-                isFahrenheit={isFahrenheit}
-                items={weather.dailyForecast}
-                title={t('Daily')}
-              />
-            </>
-          ) : (
-            <View>
-              <Text>{isLoading}</Text>
-            </View>
-          )}
-          <Footer />
-        </View>
-      </ScrollView>
-      <ToastManager animationStyle={'rightInOut'} style={styles.toast} />
-    </SafeAreaView>
+    <DiagonalGradient>
+      <SafeAreaView style={styles.mainContainer}>
+        <StatusBar
+          barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+          backgroundColor={styles.mainContainer.backgroundColor}
+        />
+
+        <ScrollView
+          contentInsetAdjustmentBehavior="automatic"
+          style={styles.mainContainer}>
+          <View style={styles.appSection}>
+            <TopButtons setQuery={setQuery} />
+            <Inputs
+              setQuery={setQuery}
+              setFahrenheit={setFahrenheit}
+              hasLocationPermission={hasLocationPermission}
+            />
+            {!isLoading && weather !== undefined ? (
+              <>
+                <TimeAndLocation
+                  weather={weather}
+                  isFahrenheit={isFahrenheit}
+                />
+                <TemperatureAndDetails
+                  weather={weather}
+                  isFahrenheit={isFahrenheit}
+                />
+                <Forecast
+                  isFahrenheit={isFahrenheit}
+                  items={weather.fiveHourForecast}
+                  title={t('Hourly')}
+                />
+                <Forecast
+                  isFahrenheit={isFahrenheit}
+                  items={weather.dailyForecast}
+                  title={t('Daily')}
+                />
+              </>
+            ) : (
+              <View>
+                <Text>{isLoading}</Text>
+              </View>
+            )}
+            <DiagonalGradient />
+            <Footer />
+          </View>
+        </ScrollView>
+        <ToastManager animationStyle={'rightInOut'} style={styles.toast} />
+      </SafeAreaView>
+    </DiagonalGradient>
   );
 }
 
@@ -86,7 +94,7 @@ const styles = StyleSheet.create({
   mainContainer: {
     width: '100%',
     height: '100%',
-    backgroundColor: '#04b7da',
+    backgroundColor: 'transparent',
   },
   appSection: {
     marginHorizontal: 6,

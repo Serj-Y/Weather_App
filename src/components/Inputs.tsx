@@ -7,7 +7,11 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {globalStyles, globalTextColors} from '../Style/GlobalStyles.tsx';
+import {
+  globalFontWeight,
+  globalStyles,
+  globalTextColors,
+} from '../Style/GlobalStyles.tsx';
 import Icon from 'react-native-vector-icons/Feather';
 import Geolocation from 'react-native-geolocation-service';
 import {Toast} from 'toastify-react-native';
@@ -68,10 +72,13 @@ export default function Inputs({
       <View style={styles.inputSection}>
         <TextInput
           value={city}
-          onChangeText={value => setCity(value)}
-          placeholder={t('City')}
+          onChangeText={setCity}
+          placeholder={t('Searchcity')}
           style={styles.input}
           autoCapitalize={'words'}
+          placeholderTextColor={globalTextColors.lightColor.color}
+          caretHidden={false}
+          onEndEditing={handleSearchClick}
         />
         <TouchableOpacity style={styles.searchButton}>
           <Icon
@@ -119,13 +126,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   input: {
-    fontSize: globalStyles.textLLightColor.fontSize,
-    lineHeight: 28,
-    fontWeight: globalStyles.textLLightColor.fontWeight,
+    fontSize: globalStyles.textMLightColor.fontSize,
+    fontWeight: globalFontWeight.light.fontWeight,
     width: '70%',
-    backgroundColor: globalStyles.textLLightColor.color,
-    height: 36,
+    backgroundColor: 'transparent',
     marginRight: 8,
+    color: globalTextColors.lightColor.color,
   },
   searchButton: {
     width: '15%',
