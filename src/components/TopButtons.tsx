@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {globalStyles} from '../Style/GlobalStyles.tsx';
+import {globalHorizontalMargin, globalStyles} from '../Style/GlobalStyles.tsx';
 
 type TopButtonType = {
   setQuery: (value: string) => void;
@@ -44,5 +44,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     margin: 6,
     marginTop: 24,
+    marginHorizontal: globalHorizontalMargin.normal.marginHorizontal,
   },
 });

@@ -6,6 +6,7 @@ import {
   globalFontWeight,
   globalStyles,
   globalTextColors,
+  globalVerticalMargin,
 } from '../Style/GlobalStyles.tsx';
 
 export type TimeAndLocationPropsType = {
@@ -37,12 +38,12 @@ const styles = StyleSheet.create({
   timeSection: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginVertical: 8,
+    marginVertical: globalVerticalMargin.normal.marginVertical,
   },
   countySection: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginVertical: 6,
+    marginVertical: globalVerticalMargin.normal.marginVertical,
   },
   country: {
     color: globalTextColors.lightColor.color,

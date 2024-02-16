@@ -1,6 +1,9 @@
 import React from 'react';
 import {View} from 'react-native';
-import {globalTextColors} from '../../Style/GlobalStyles.tsx';
+import {
+  globalHorizontalMargin,
+  globalTextColors,
+} from '../../Style/GlobalStyles.tsx';
 
 export default function HrLine() {
   return (
@@ -9,7 +12,7 @@ export default function HrLine() {
         height: 1,
         backgroundColor: globalTextColors.lightColor.color,
         alignSelf: 'stretch',
-        marginVertical: 8,
+        marginHorizontal: globalHorizontalMargin.normal.marginHorizontal,
       }}
     />
   );

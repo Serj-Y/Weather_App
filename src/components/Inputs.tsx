@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import {
   globalFontWeight,
+  globalHorizontalMargin,
   globalStyles,
   globalTextColors,
 } from '../Style/GlobalStyles.tsx';
@@ -117,8 +118,8 @@ const styles = StyleSheet.create({
   mainContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginVertical: 16,
-    marginHorizontal: 8,
+    marginVertical: 22,
+    marginHorizontal: globalHorizontalMargin.normal.marginHorizontal,
   },
   inputSection: {
     width: '75%',

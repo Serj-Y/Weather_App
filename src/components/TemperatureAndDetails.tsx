@@ -8,8 +8,11 @@ import {
 import {Image, StyleSheet, Text, View} from 'react-native';
 import {
   globalFontWeight,
+  globalHorizontalMargin,
   globalStyles,
   globalTextColors,
+  globalVerticalMargin,
+  globalVerticalPadding,
 } from '../Style/GlobalStyles.tsx';
 import Icon from 'react-native-vector-icons/Feather';
 
@@ -141,7 +144,7 @@ const styles = StyleSheet.create({
   feelsSection: {
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: 12,
+    paddingVertical: globalVerticalPadding.normal.paddingVertical,
     fontSize: 24,
     fontWeight: '200',
   },
@@ -149,7 +152,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-evenly',
-    paddingVertical: 12,
+    paddingVertical: globalVerticalPadding.normal.paddingVertical,
   },
   forecastDetailsSection: {
     flexDirection: 'column',
@@ -158,7 +161,7 @@ const styles = StyleSheet.create({
   forecastDataSection: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginVertical: 4,
+    marginVertical: 6,
     flexDirection: 'row',
   },
   forecastDataBottomSection: {
@@ -166,7 +169,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginVertical: 8,
-    paddingHorizontal: 8,
+    marginVertical: globalVerticalMargin.normal.marginVertical,
+    marginHorizontal: globalHorizontalMargin.normal.marginHorizontal,
   },
 });

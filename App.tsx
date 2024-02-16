@@ -19,6 +19,7 @@ import Footer from './src/components/Footer.tsx';
 import Geolocation from 'react-native-geolocation-service';
 import ToastManager from 'toastify-react-native';
 import DiagonalGradient from './src/helpers/ui/gradients/DiagonalGradient.tsx';
+import {globalHorizontalMargin} from './src/Style/GlobalStyles.tsx';
 
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -33,6 +34,7 @@ function App(): React.JSX.Element {
       const permission = await Geolocation.requestAuthorization('whenInUse');
       setLocationPermission(permission);
     };
+
     hasPermission();
   }, []);
 
@@ -74,15 +76,15 @@ function App(): React.JSX.Element {
                   items={weather.dailyForecast}
                   title={t('Daily')}
                 />
+                <Footer />
               </>
             ) : (
               <View>
                 <Text>{isLoading}</Text>
               </View>
             )}
-            <DiagonalGradient />
-            <Footer />
           </View>
+          <DiagonalGradient />
         </ScrollView>
         <ToastManager animationStyle={'rightInOut'} style={styles.toast} />
       </SafeAreaView>
@@ -97,7 +99,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   appSection: {
-    marginHorizontal: 6,
+    minHeight: '100%',
+    marginHorizontal: globalHorizontalMargin.normal.marginHorizontal,
     backgroundColor: 'blur',
   },
   sectionDescription: {

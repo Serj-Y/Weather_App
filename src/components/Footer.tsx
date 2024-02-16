@@ -2,13 +2,18 @@ import React, {useState} from 'react';
 import {useTranslation} from 'react-i18next';
 import {Linking, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import HrLine from '../helpers/ui/HrLine.tsx';
-import {globalStyles, globalTextColors} from '../Style/GlobalStyles.tsx';
+import {
+  globalHorizontalMargin,
+  globalStyles,
+  globalTextColors,
+  globalVerticalMargin,
+} from '../Style/GlobalStyles.tsx';
 import Icon from 'react-native-vector-icons/Feather';
 import {Toast} from 'toastify-react-native';
 
 export default function Footer() {
   const {t, i18n} = useTranslation();
-  const [lang, setLang] = useState('');
+  const [lang, setLang] = useState('en');
 
   const handleChangeLanguageToEN = () => {
     i18n.changeLanguage('en');
@@ -38,7 +43,6 @@ export default function Footer() {
             name="globe"
             size={16}
             color={globalTextColors.lightColor.color}
-            onPress={() => Linking.openURL('https://github.com/Serj-Y')}
           />
           <TouchableOpacity
             disabled={lang === 'en'}
@@ -62,7 +66,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginBottom: 8,
+    marginVertical: globalVerticalMargin.normal.marginVertical,
+    marginHorizontal: globalHorizontalMargin.normal.marginHorizontal,
   },
   changeLanguageSection: {
     flexDirection: 'row',

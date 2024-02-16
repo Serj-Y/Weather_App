@@ -5,7 +5,12 @@ import {
   convertFrom12To24Format,
 } from '../helpers/helpers.ts';
 import {Image, StyleSheet, Text, View} from 'react-native';
-import {globalFontWeight, globalStyles} from '../Style/GlobalStyles.tsx';
+import {
+  globalFontWeight,
+  globalHorizontalMargin,
+  globalStyles,
+  globalVerticalMargin,
+} from '../Style/GlobalStyles.tsx';
 import HrLine from '../helpers/ui/HrLine.tsx';
 
 type PropsType = {
@@ -54,12 +59,15 @@ export default function Forecast({title, items, isFahrenheit}: PropsType) {
 const styles = StyleSheet.create({
   mainTitle: {
     marginTop: 24,
+    marginHorizontal: globalHorizontalMargin.normal.marginHorizontal,
   },
   titleSection: {
     flexDirection: 'row',
     flexGrow: 1,
     justifyContent: 'space-between',
     alignItems: 'center',
+    marginHorizontal: globalHorizontalMargin.small.marginHorizontal,
+    marginVertical: globalVerticalMargin.normal.marginVertical,
   },
   title: {
     flexDirection: 'column',
