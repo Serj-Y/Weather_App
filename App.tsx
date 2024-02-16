@@ -17,13 +17,14 @@ import Forecast from './src/components/Forecast.tsx';
 import {useTranslation} from 'react-i18next';
 import Footer from './src/components/Footer.tsx';
 import Geolocation from 'react-native-geolocation-service';
-import ToastManager from 'toastify-react-native';
+import ToastManager, {Toast} from 'toastify-react-native';
 import DiagonalGradient from './src/helpers/ui/gradients/DiagonalGradient.tsx';
 import {globalHorizontalMargin} from './src/Style/GlobalStyles.tsx';
 
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
-  const [query, setQuery] = useState('Kyiv');
+  const [coordinates, setCoordinates] = useState('');
+  const [query, setQuery] = useState(coordinates || 'Kyiv');
   const [isFahrenheit, setFahrenheit] = useState(false);
   const [hasLocationPermission, setLocationPermission] = useState('');
   const {isLoading, weather} = useWeather(query);
@@ -32,11 +33,27 @@ function App(): React.JSX.Element {
   useEffect(() => {
     const hasPermission = async () => {
       const permission = await Geolocation.requestAuthorization('whenInUse');
-      setLocationPermission(permission);
+      return setLocationPermission(permission);
     };
-
-    hasPermission();
-  }, []);
+    hasPermission().then(() => {
+      if (hasLocationPermission === 'granted') {
+        Geolocation.getCurrentPosition(
+          position => {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+            const coordinate = `${lat},${lon}`;
+            setCoordinates(coordinate);
+            setQuery(coordinate);
+            Toast.success('Forecast for current position');
+          },
+          error => {
+            console.log(error.code, error.message);
+          },
+          {enableHighAccuracy: true, timeout: 15000, maximumAge: 10000},
+        );
+      }
+    });
+  }, [hasLocationPermission]);
 
   return (
     <DiagonalGradient>
@@ -53,6 +70,7 @@ function App(): React.JSX.Element {
             <TopButtons setQuery={setQuery} />
             <Inputs
               setQuery={setQuery}
+              coordinates={coordinates}
               setFahrenheit={setFahrenheit}
               hasLocationPermission={hasLocationPermission}
             />

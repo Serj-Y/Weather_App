@@ -21,11 +21,13 @@ type PropsType = {
   setFahrenheit: (value: boolean) => void;
   setQuery: (city: string) => void;
   hasLocationPermission: string;
+  coordinates: string;
 };
 
 export default function Inputs({
   setQuery,
   setFahrenheit,
+  coordinates,
   hasLocationPermission,
 }: PropsType) {
   const {t} = useTranslation();
@@ -38,22 +40,27 @@ export default function Inputs({
       setCity('');
     }
   };
-
+  let a = 0;
   const handleGeolocationClick = () => {
-    if (hasLocationPermission === 'granted') {
-      Geolocation.getCurrentPosition(
-        position => {
-          const lat = position.coords.latitude;
-          const lon = position.coords.longitude;
-          const coordinate = `${lat},${lon}`;
-          setQuery(coordinate);
-        },
-        error => {
-          console.log(error.code, error.message);
-        },
-        {enableHighAccuracy: true, timeout: 15000, maximumAge: 10000},
-      );
+    a++;
+    if (a === 3) {
+      if (hasLocationPermission === 'granted') {
+        Geolocation.getCurrentPosition(
+          position => {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+            const coordinate = `${lat},${lon}`;
+            setQuery(coordinate);
+          },
+          error => {
+            console.log(error.code, error.message);
+          },
+          {enableHighAccuracy: true, timeout: 15000, maximumAge: 10000},
+        );
+        a = 0;
+      }
     }
+    setQuery(coordinates);
   };
 
   const handleCelsiusClick = () => {

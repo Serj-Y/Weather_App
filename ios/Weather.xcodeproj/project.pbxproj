@@ -12,6 +12,7 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		5234329B2B7FC7B2007013E0 /* iconbig.png in Resources */ = {isa = PBXBuildFile; fileRef = 5234329A2B7FC7B2007013E0 /* iconbig.png */; };
 		52BBF5D52B7E83360020EB9D /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 52BBF5D32B7E82E80020EB9D /* main.jsbundle */; };
 		7699B88040F8A987B510C191 /* libPods-Weather-WeatherTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-Weather-WeatherTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
@@ -39,6 +40,7 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Weather/main.m; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-Weather-WeatherTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Weather-WeatherTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B4392A12AC88292D35C810B /* Pods-Weather.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather.debug.xcconfig"; path = "Target Support Files/Pods-Weather/Pods-Weather.debug.xcconfig"; sourceTree = "<group>"; };
+		5234329A2B7FC7B2007013E0 /* iconbig.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iconbig.png; path = ../../../../Desktop/iconbig.png; sourceTree = "<group>"; };
 		5292C0212B7E6FBE00235DBA /* Ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Ionicons.ttf; path = ../../../../Desktop/Ionicons.ttf; sourceTree = "<group>"; };
 		5295F2A62B7D3CB8009A2E7E /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		52BBF5D32B7E82E80020EB9D /* main.jsbundle */ = {isa = PBXFileReference; lastKnownFileType = text; name = main.jsbundle; path = Weather/main.jsbundle; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 		13B07FAE1A68108700A75B9A /* Weather */ = {
 			isa = PBXGroup;
 			children = (
+				523432992B7FC786007013E0 /* Assets */,
 				5295F2A52B7D3B4B009A2E7E /* Fonts */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
@@ -109,6 +112,14 @@
 				19F6CBCC0A4E27FBF8BF4A61 /* libPods-Weather-WeatherTests.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		523432992B7FC786007013E0 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				5234329A2B7FC7B2007013E0 /* iconbig.png */,
+			);
+			name = Assets;
 			sourceTree = "<group>";
 		};
 		5295F2A52B7D3B4B009A2E7E /* Fonts */ = {
@@ -257,6 +268,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52BBF5D52B7E83360020EB9D /* main.jsbundle in Resources */,
+				5234329B2B7FC7B2007013E0 /* iconbig.png in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 			);
@@ -480,10 +492,11 @@
 			baseConfigurationReference = 3B4392A12AC88292D35C810B /* Pods-Weather.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"ASSETCATALOG_COMPILER_APPICON_NAME[sdk=iphoneos*]" = AppIcon;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = JYFDN74H82;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Weather/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -513,7 +526,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = JYFDN74H82;
 				INFOPLIST_FILE = Weather/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -601,10 +614,7 @@
 					"-DFOLLY_USE_LIBCPP=1",
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;
@@ -674,10 +684,7 @@
 					"-DFOLLY_USE_LIBCPP=1",
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;

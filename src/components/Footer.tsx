@@ -13,15 +13,15 @@ import {Toast} from 'toastify-react-native';
 
 export default function Footer() {
   const {t, i18n} = useTranslation();
-  const [lang, setLang] = useState('en');
-
+  const i18CurrentLang = i18n.resolvedLanguage;
+  const [lang, setLang] = useState(i18CurrentLang);
   const handleChangeLanguageToEN = () => {
     i18n.changeLanguage('en');
     Toast.success(t('ChangeLang'));
     setLang('en');
   };
   const handleChangeLanguageToUA = () => {
-    i18n.changeLanguage('ua');
+    i18n.changeLanguage('ua-UA');
     Toast.success(t('ChangeLang'));
     setLang('ua');
   };

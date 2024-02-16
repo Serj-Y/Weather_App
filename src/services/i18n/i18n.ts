@@ -12,8 +12,7 @@ i18next
   .use(initReactI18next)
   .init({
     compatibilityJSON: 'v3',
-    fallbackLng: 'en',
-    lng: lang,
+    fallbackLng: lang,
     resources: {
       en: {
         translation: {
