@@ -14,21 +14,23 @@ import {
   globalTextColors,
 } from '../Style/GlobalStyles.tsx';
 import Icon from 'react-native-vector-icons/Feather';
-import Geolocation from 'react-native-geolocation-service';
 import {Toast} from 'toastify-react-native';
+import {GetCordinates} from '../services/geolocation/getCordinates.ts';
 
 type PropsType = {
   setFahrenheit: (value: boolean) => void;
   setQuery: (city: string) => void;
   hasLocationPermission: string;
+  setCoordinates: (cordinates: string) => void;
   coordinates: string;
 };
 
 export default function Inputs({
   setQuery,
   setFahrenheit,
-  coordinates,
+  setCoordinates,
   hasLocationPermission,
+  coordinates,
 }: PropsType) {
   const {t} = useTranslation();
   const [city, setCity] = useState('');
@@ -43,22 +45,9 @@ export default function Inputs({
   let a = 0;
   const handleGeolocationClick = () => {
     a++;
-    if (a === 3) {
-      if (hasLocationPermission === 'granted') {
-        Geolocation.getCurrentPosition(
-          position => {
-            const lat = position.coords.latitude;
-            const lon = position.coords.longitude;
-            const coordinate = `${lat},${lon}`;
-            setQuery(coordinate);
-          },
-          error => {
-            console.log(error.code, error.message);
-          },
-          {enableHighAccuracy: true, timeout: 15000, maximumAge: 10000},
-        );
-        a = 0;
-      }
+    if (a >= 3) {
+      console.log('proxy');
+      GetCordinates({hasLocationPermission, setCoordinates, setQuery});
     }
     setQuery(coordinates);
   };
@@ -138,21 +127,21 @@ const styles = StyleSheet.create({
     fontWeight: globalFontWeight.light.fontWeight,
     width: '70%',
     backgroundColor: 'transparent',
-    marginRight: 8,
     color: globalTextColors.lightColor.color,
   },
   searchButton: {
-    width: '15%',
     justifyContent: 'center',
+    alignItems: 'center',
+    marginHorizontal: globalHorizontalMargin.normal.marginHorizontal,
   },
   geolocationButton: {
-    width: '15%',
     justifyContent: 'center',
+    alignItems: 'center',
+    marginHorizontal: globalHorizontalMargin.normal.marginHorizontal,
   },
   temperatureUnitSection: {
     flexDirection: 'row',
-    width: '25%',
-    justifyContent: 'space-evenly',
+    gap: 10,
     alignItems: 'center',
   },
 });

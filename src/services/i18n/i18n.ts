@@ -32,6 +32,7 @@ i18next
           CityNotFound: 'City Not Found',
           Weatherfor: 'Weather for',
           Loading: 'Loading...',
+          ForecastForCurrentPosition: 'Forecast for current position',
 
           TemperatureC: 'Temperature in: Celsius',
           TemperatureF: 'Temperature in: Fahrenheit',
@@ -42,6 +43,8 @@ i18next
           AllRights: 'All Rights Reserved',
           ContactUs: 'Contact us',
           ChangeLang: 'Language Changed to: English',
+
+          GeolocationFailed: 'Geolocation check failed...',
         },
       },
       ua: {
@@ -62,6 +65,7 @@ i18next
           CityNotFound: 'Місто не знайдено',
           Weatherfor: 'Прогноз для ',
           Loading: 'Завантаження...',
+          ForecastForCurrentPosition: 'Прогноз на поточну позицію',
 
           TemperatureC: 'Температура в: Цельсиях',
           TemperatureF: 'Температура в: Фаренгейтах',
@@ -72,6 +76,8 @@ i18next
           AllRights: 'Всі права захищені.',
           ContactUs: "Зв'яжіться з нами",
           ChangeLang: 'Мову змінено на: Українську',
+
+          GeolocationFailed: 'Не вдалося перевірити геолокацію...',
         },
       },
     },

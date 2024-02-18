@@ -16,10 +16,11 @@ import TemperatureAndDetails from './src/components/TemperatureAndDetails.tsx';
 import Forecast from './src/components/Forecast.tsx';
 import {useTranslation} from 'react-i18next';
 import Footer from './src/components/Footer.tsx';
-import Geolocation from 'react-native-geolocation-service';
-import ToastManager, {Toast} from 'toastify-react-native';
+import ToastManager from 'toastify-react-native';
 import DiagonalGradient from './src/helpers/ui/gradients/DiagonalGradient.tsx';
 import {globalHorizontalMargin} from './src/Style/GlobalStyles.tsx';
+import {GeolocationPermission} from './src/services/geolocation/geolocationPermission.ts';
+import {GetCordinates} from './src/services/geolocation/getCordinates.ts';
 
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -31,27 +32,8 @@ function App(): React.JSX.Element {
   const {t} = useTranslation();
 
   useEffect(() => {
-    const hasPermission = async () => {
-      const permission = await Geolocation.requestAuthorization('whenInUse');
-      return setLocationPermission(permission);
-    };
-    hasPermission().then(() => {
-      if (hasLocationPermission === 'granted') {
-        Geolocation.getCurrentPosition(
-          position => {
-            const lat = position.coords.latitude;
-            const lon = position.coords.longitude;
-            const coordinate = `${lat},${lon}`;
-            setCoordinates(coordinate);
-            setQuery(coordinate);
-            Toast.success('Forecast for current position');
-          },
-          error => {
-            console.log(error.code, error.message);
-          },
-          {enableHighAccuracy: true, timeout: 15000, maximumAge: 10000},
-        );
-      }
+    GeolocationPermission({setLocationPermission}).then(() => {
+      GetCordinates({hasLocationPermission, setCoordinates, setQuery});
     });
   }, [hasLocationPermission]);
 
@@ -62,15 +44,15 @@ function App(): React.JSX.Element {
           barStyle={isDarkMode ? 'light-content' : 'dark-content'}
           backgroundColor={styles.mainContainer.backgroundColor}
         />
-
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
           style={styles.mainContainer}>
           <View style={styles.appSection}>
             <TopButtons setQuery={setQuery} />
             <Inputs
-              setQuery={setQuery}
               coordinates={coordinates}
+              setQuery={setQuery}
+              setCoordinates={setCoordinates}
               setFahrenheit={setFahrenheit}
               hasLocationPermission={hasLocationPermission}
             />
@@ -117,7 +99,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   appSection: {
-    minHeight: '100%',
+    minHeight: '98%',
     marginHorizontal: globalHorizontalMargin.normal.marginHorizontal,
     backgroundColor: 'blur',
   },
