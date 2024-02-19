@@ -42,11 +42,10 @@ function App(): React.JSX.Element {
       <SafeAreaView style={styles.mainContainer}>
         <StatusBar
           barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-          backgroundColor={styles.mainContainer.backgroundColor}
+          backgroundColor={'transparent'}
+          translucent={true}
         />
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.mainContainer}>
+        <ScrollView contentInsetAdjustmentBehavior="automatic">
           <View style={styles.appSection}>
             <TopButtons setQuery={setQuery} />
             <Inputs
@@ -96,12 +95,12 @@ const styles = StyleSheet.create({
   mainContainer: {
     width: '100%',
     height: '100%',
-    backgroundColor: 'transparent',
+    paddingTop: 44,
   },
   appSection: {
-    minHeight: '98%',
+    minHeight: '100%',
     marginHorizontal: globalHorizontalMargin.normal.marginHorizontal,
-    backgroundColor: 'blur',
+    paddingBottom: 11,
   },
   sectionDescription: {
     marginTop: 8,

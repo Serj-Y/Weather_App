@@ -1,14 +1,11 @@
 import i18next from 'i18next';
 import {initReactI18next} from 'react-i18next';
-import {
-  getLanguage,
-  ReactNativeLanguageDetector,
-} from 'react-native-localization-settings';
+import {getLanguage} from 'react-native-localization-settings';
 
 const lang = getLanguage();
 
 i18next
-  .use(ReactNativeLanguageDetector)
+  // .use(ReactNativeLanguageDetector) // this part do re-render on android device
   .use(initReactI18next)
   .init({
     compatibilityJSON: 'v3',

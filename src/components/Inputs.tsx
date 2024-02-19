@@ -45,10 +45,10 @@ export default function Inputs({
   let a = 0;
   const handleGeolocationClick = () => {
     a++;
-    if (a >= 3) {
-      console.log('proxy');
+    if (a >= 2) {
       GetCordinates({hasLocationPermission, setCoordinates, setQuery});
     }
+    Toast.success(t('ForecastForCurrentPosition'));
     setQuery(coordinates);
   };
 
@@ -98,13 +98,25 @@ export default function Inputs({
         <TouchableOpacity
           onPress={() => handleCelsiusClick()}
           disabled={tempUnits === 'C'}>
-          <Text style={globalStyles.textMLightColor}>°C </Text>
+          {tempUnits === 'F' ? (
+            <Text style={globalStyles.textMLightColor}>°C </Text>
+          ) : (
+            <Text style={[globalStyles.textMLightColor, {opacity: 0.5}]}>
+              °C
+            </Text>
+          )}
         </TouchableOpacity>
         <Text style={globalStyles.textMLightColor}>|</Text>
         <TouchableOpacity
           onPress={() => handleFahrenheitClick()}
           disabled={tempUnits === 'F'}>
-          <Text style={globalStyles.textMLightColor}>°F</Text>
+          {tempUnits === 'C' ? (
+            <Text style={globalStyles.textMLightColor}>°F </Text>
+          ) : (
+            <Text style={[globalStyles.textMLightColor, {opacity: 0.5}]}>
+              °F
+            </Text>
+          )}
         </TouchableOpacity>
       </View>
     </View>

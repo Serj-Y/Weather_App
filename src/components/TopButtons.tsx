@@ -43,7 +43,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     margin: 6,
-    marginTop: 24,
     marginHorizontal: globalHorizontalMargin.normal.marginHorizontal,
   },
 });

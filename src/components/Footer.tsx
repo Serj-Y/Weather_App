@@ -38,7 +38,7 @@ export default function Footer() {
             onPress={() => Linking.openURL('https://github.com/Serj-Y')}
           />
         </View>
-        <View style={styles.changeLanguageSection}>
+        <View style={styles.changeLanguage}>
           <Icon
             name="globe"
             size={16}
@@ -47,13 +47,25 @@ export default function Footer() {
           <TouchableOpacity
             disabled={lang === 'en'}
             onPress={handleChangeLanguageToEN}>
-            <Text style={globalStyles.textSLightColor}> EN </Text>
+            {lang === 'ua' ? (
+              <Text style={globalStyles.textMLightColor}>EN</Text>
+            ) : (
+              <Text style={[globalStyles.textMLightColor, {opacity: 0.5}]}>
+                EN
+              </Text>
+            )}
           </TouchableOpacity>
           <Text style={globalStyles.textSLightColor}>|</Text>
           <TouchableOpacity
             disabled={lang === 'ua'}
             onPress={handleChangeLanguageToUA}>
-            <Text style={globalStyles.textSLightColor}> UA </Text>
+            {lang === 'en' ? (
+              <Text style={globalStyles.textMLightColor}>UA</Text>
+            ) : (
+              <Text style={[globalStyles.textMLightColor, {opacity: 0.5}]}>
+                UA
+              </Text>
+            )}
           </TouchableOpacity>
         </View>
       </View>
@@ -72,11 +84,13 @@ const styles = StyleSheet.create({
   changeLanguageSection: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-around',
   },
   changeLanguage: {
-    fontSize: globalStyles.textMLightColor.fontSize,
-    fontWeight: globalStyles.textMLightColor.fontWeight,
-    color: globalStyles.textMLightColor.color,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    width: '25%',
   },
   contactsSection: {
     flexDirection: 'row',
