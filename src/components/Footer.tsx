@@ -45,18 +45,6 @@ export default function Footer() {
             color={globalTextColors.lightColor.color}
           />
           <TouchableOpacity
-            disabled={lang === 'en'}
-            onPress={handleChangeLanguageToEN}>
-            {lang === 'ua' ? (
-              <Text style={globalStyles.textMLightColor}>EN</Text>
-            ) : (
-              <Text style={[globalStyles.textMLightColor, {opacity: 0.5}]}>
-                EN
-              </Text>
-            )}
-          </TouchableOpacity>
-          <Text style={globalStyles.textSLightColor}>|</Text>
-          <TouchableOpacity
             disabled={lang === 'ua'}
             onPress={handleChangeLanguageToUA}>
             {lang === 'en' ? (
@@ -64,6 +52,18 @@ export default function Footer() {
             ) : (
               <Text style={[globalStyles.textMLightColor, {opacity: 0.5}]}>
                 UA
+              </Text>
+            )}
+          </TouchableOpacity>
+          <Text style={globalStyles.textSLightColor}>|</Text>
+          <TouchableOpacity
+            disabled={lang === 'en'}
+            onPress={handleChangeLanguageToEN}>
+            {lang === 'ua' ? (
+              <Text style={globalStyles.textMLightColor}>EN</Text>
+            ) : (
+              <Text style={[globalStyles.textMLightColor, {opacity: 0.5}]}>
+                EN
               </Text>
             )}
           </TouchableOpacity>
