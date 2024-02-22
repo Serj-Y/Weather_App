@@ -1,5 +1,4 @@
 import React from 'react';
-import {formatToLocalTime} from '../helpers/helpers';
 import {WeatherType} from '../types/Types';
 import {StyleSheet, Text, View} from 'react-native';
 import {
@@ -8,6 +7,7 @@ import {
   globalTextColors,
   globalVerticalMargin,
 } from '../Style/GlobalStyles.tsx';
+import {formatToLocalTime} from '../helpers/formatToLocalTime.ts';
 
 export type TimeAndLocationPropsType = {
   weather: WeatherType;

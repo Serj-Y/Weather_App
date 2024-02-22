@@ -1,10 +1,5 @@
 import React from 'react';
 import {useTranslation} from 'react-i18next';
-import {
-  celsiusToFahrenheit,
-  convertFrom12To24Format,
-  kmToMph,
-} from '../helpers/helpers';
 import {Image, StyleSheet, Text, View} from 'react-native';
 import {
   globalFontWeight,
@@ -15,6 +10,9 @@ import {
   globalVerticalPadding,
 } from '../Style/GlobalStyles.tsx';
 import Icon from 'react-native-vector-icons/Feather';
+import {convertTemperatureUnits} from '../helpers/convertTemperatureUnits.ts';
+import {convertSpeedUnits} from '../helpers/convertSpeedUnits.ts';
+import {convertTime} from '../helpers/convertTime.ts';
 
 type PropsType = {
   weather: {
@@ -59,7 +57,7 @@ export default function TemperatureAndDetails({
           source={{uri: `https:${icon}`}}
         />
         <Text style={globalStyles.textXLLightColor}>
-          {celsiusToFahrenheit(temp_c, isFahrenheit)}
+          {convertTemperatureUnits(temp_c, isFahrenheit)}
         </Text>
         <View style={styles.forecastDetailsSection}>
           <View style={styles.forecastDataSection}>
@@ -70,7 +68,7 @@ export default function TemperatureAndDetails({
             />
             <Text style={globalStyles.textSLightColor}>
               <Text style={globalFontWeight.light}> {t('Realfeel')}: </Text>
-              {celsiusToFahrenheit(feelslike_c, isFahrenheit)}
+              {convertTemperatureUnits(feelslike_c, isFahrenheit)}
             </Text>
           </View>
           <View style={styles.forecastDataSection}>
@@ -92,7 +90,7 @@ export default function TemperatureAndDetails({
             />
             <Text style={globalStyles.textSLightColor}>
               <Text style={globalFontWeight.light}> {t('Wind')}: </Text>
-              {kmToMph(wind_kph, isFahrenheit)}
+              {convertSpeedUnits(wind_kph, isFahrenheit)}
               {isFahrenheit ? t('WindSpeedMph') : t('WindSpeedKph')}
             </Text>
           </View>
@@ -105,7 +103,7 @@ export default function TemperatureAndDetails({
           color={globalTextColors.lightColor.color}
         />
         <Text style={[globalStyles.textSLightColor, globalFontWeight.bold]}>
-          {convertFrom12To24Format(sunrise, isFahrenheit)}
+          {convertTime(sunrise, isFahrenheit)}
         </Text>
         <Text style={globalStyles.textSLightColor}>|</Text>
         <Icon
@@ -114,7 +112,7 @@ export default function TemperatureAndDetails({
           color={globalTextColors.lightColor.color}
         />
         <Text style={[globalStyles.textSLightColor, globalFontWeight.bold]}>
-          {celsiusToFahrenheit(maxtemp_c, isFahrenheit)}
+          {convertTemperatureUnits(maxtemp_c, isFahrenheit)}
         </Text>
         <Text style={globalStyles.textSLightColor}>|</Text>
         <Icon
@@ -123,7 +121,7 @@ export default function TemperatureAndDetails({
           color={globalTextColors.lightColor.color}
         />
         <Text style={[globalStyles.textSLightColor, globalFontWeight.bold]}>
-          {celsiusToFahrenheit(mintemp_c, isFahrenheit)}
+          {convertTemperatureUnits(mintemp_c, isFahrenheit)}
         </Text>
         <Text style={globalStyles.textSLightColor}>|</Text>
         <Icon
@@ -133,7 +131,7 @@ export default function TemperatureAndDetails({
         />
         <Text style={[globalStyles.textSLightColor, globalFontWeight.light]}>
           <Text style={[globalFontWeight.bold]}>
-            {convertFrom12To24Format(sunset, isFahrenheit)}
+            {convertTime(sunset, isFahrenheit)}
           </Text>
         </Text>
       </View>

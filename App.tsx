@@ -17,7 +17,7 @@ import Forecast from './src/components/Forecast.tsx';
 import {useTranslation} from 'react-i18next';
 import Footer from './src/components/Footer.tsx';
 import ToastManager from 'toastify-react-native';
-import DiagonalGradient from './src/helpers/ui/gradients/DiagonalGradient.tsx';
+import DiagonalGradient from './src/components/DiagonalGradient.tsx';
 import {globalHorizontalMargin} from './src/Style/GlobalStyles.tsx';
 import {GeolocationPermission} from './src/services/geolocation/geolocationPermission.ts';
 import {GetCordinates} from './src/services/geolocation/getCordinates.ts';

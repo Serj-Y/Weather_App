@@ -1,10 +1,6 @@
 import React from 'react';
 import {useTranslation} from 'react-i18next';
 import {
-  celsiusToFahrenheit,
-  convertFrom12To24Format,
-} from '../helpers/helpers.ts';
-import {
   Dimensions,
   FlatList,
   Image,
@@ -18,7 +14,9 @@ import {
   globalStyles,
   globalVerticalMargin,
 } from '../Style/GlobalStyles.tsx';
-import HrLine from '../helpers/ui/HrLine.tsx';
+import HrLine from './HrLine.tsx';
+import {convertTime} from '../helpers/convertTime.ts';
+import {convertTemperatureUnits} from '../helpers/convertTemperatureUnits.ts';
 
 type PropsType = {
   title: string;
@@ -51,12 +49,12 @@ export default function Forecast({title, items, isFahrenheit}: PropsType) {
             <Text
               style={[globalStyles.textSLightColor, globalFontWeight.light]}>
               {item.title.length > 6
-                ? convertFrom12To24Format(item.title, isFahrenheit)
+                ? convertTime(item.title, isFahrenheit)
                 : item.title}
             </Text>
             <Image style={styles.image} source={{uri: `https:${item.icon}`}} />
             <Text style={[globalStyles.textSLightColor, globalFontWeight.bold]}>
-              {celsiusToFahrenheit(item.temp, isFahrenheit)}
+              {convertTemperatureUnits(item.temp, isFahrenheit)}
             </Text>
           </View>
         )}

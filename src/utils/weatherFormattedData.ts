@@ -1,5 +1,5 @@
 import {WeatherDataType} from '../types/Types';
-import {formatToLocalTime} from '../helpers/helpers.ts';
+import {formatToLocalTime} from '../helpers/formatToLocalTime.ts';
 
 export class WeatherFormattedData {
   private weather: WeatherDataType;
@@ -59,8 +59,8 @@ export class WeatherFormattedData {
     const filtredTwoDaysHours = twoDaysHours.filter(
       f => f.time_epoch >= location.localtime_epoch,
     );
-
     const hourForecast = filtredTwoDaysHours
+
       .slice(0, 24)
       .map(({time_epoch, temp_c, condition: {icon}}) => ({
         title: formatToLocalTime(time_epoch, location.tz_id, 'hh:mm a'),

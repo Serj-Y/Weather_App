@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import {useTranslation} from 'react-i18next';
 import {Linking, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import HrLine from '../helpers/ui/HrLine.tsx';
 import {
   globalHorizontalMargin,
   globalStyles,
@@ -10,6 +9,7 @@ import {
 } from '../Style/GlobalStyles.tsx';
 import Icon from 'react-native-vector-icons/Feather';
 import {Toast} from 'toastify-react-native';
+import HrLine from './HrLine.tsx';
 
 export default function Footer() {
   const {t, i18n} = useTranslation();
