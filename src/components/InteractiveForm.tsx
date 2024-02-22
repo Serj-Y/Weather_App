@@ -25,12 +25,11 @@ type PropsType = {
   coordinates: string;
 };
 
-export default function Inputs({
+export default function InteractiveForm({
   setQuery,
   setFahrenheit,
   setCoordinates,
   hasLocationPermission,
-  coordinates,
 }: PropsType) {
   const {t} = useTranslation();
   const [city, setCity] = useState('');
@@ -42,14 +41,9 @@ export default function Inputs({
       setCity('');
     }
   };
-  let a = 0;
+
   const handleGeolocationClick = () => {
-    a++;
-    if (a >= 2) {
-      GetCordinates({hasLocationPermission, setCoordinates, setQuery});
-    }
-    Toast.success(t('ForecastForCurrentPosition'));
-    setQuery(coordinates);
+    GetCordinates({hasLocationPermission, setCoordinates, setQuery});
   };
 
   const handleCelsiusClick = () => {

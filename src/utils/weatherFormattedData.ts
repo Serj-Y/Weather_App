@@ -61,7 +61,7 @@ export class WeatherFormattedData {
     );
 
     const hourForecast = filtredTwoDaysHours
-      .slice(0, 5)
+      .slice(0, 24)
       .map(({time_epoch, temp_c, condition: {icon}}) => ({
         title: formatToLocalTime(time_epoch, location.tz_id, 'hh:mm a'),
         temp: temp_c,

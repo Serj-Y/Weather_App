@@ -9,7 +9,7 @@ import {
   View,
 } from 'react-native';
 import {useWeather} from './src/hooks/useWeather.ts';
-import Inputs from './src/components/Inputs.tsx';
+import InteractiveForm from './src/components/InteractiveForm.tsx';
 import TopButtons from './src/components/TopButtons.tsx';
 import TimeAndLocation from './src/components/TimeAndLocation.tsx';
 import TemperatureAndDetails from './src/components/TemperatureAndDetails.tsx';
@@ -45,10 +45,12 @@ function App(): React.JSX.Element {
           backgroundColor={'transparent'}
           translucent={true}
         />
-        <ScrollView contentInsetAdjustmentBehavior="automatic">
+        <ScrollView
+          contentInsetAdjustmentBehavior="automatic"
+          showsVerticalScrollIndicator={false}>
           <View style={styles.appSection}>
             <TopButtons setQuery={setQuery} />
-            <Inputs
+            <InteractiveForm
               coordinates={coordinates}
               setQuery={setQuery}
               setCoordinates={setCoordinates}
@@ -83,7 +85,6 @@ function App(): React.JSX.Element {
               </View>
             )}
           </View>
-          <DiagonalGradient />
         </ScrollView>
         <ToastManager animationStyle={'rightInOut'} style={styles.toast} />
       </SafeAreaView>
