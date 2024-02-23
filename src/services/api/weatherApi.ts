@@ -58,7 +58,6 @@ export class WeatherApi {
           error: null,
         };
       }
-      throw new Error('CityNotFound');
     } catch {
       throw new Error('CityNotFound');
     }

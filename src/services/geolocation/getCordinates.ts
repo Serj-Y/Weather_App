@@ -13,8 +13,8 @@ export const GetCordinates = ({
   setQuery,
   setIsLoading,
 }: GetCordinatesProps) => {
+  setIsLoading(true);
   if (hasLocationPermission === 'granted') {
-    setIsLoading(true);
     Geolocation.getCurrentPosition(
       position => {
         const lat = position.coords.latitude;

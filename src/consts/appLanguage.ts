@@ -1,4 +1,4 @@
-export enum LANGUAGE_SELECT {
+export enum APP_LANGUAGE {
   UA = 'ua-UA',
   EN = 'en-EN',
 }

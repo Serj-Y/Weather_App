@@ -2,13 +2,14 @@ import {useEffect, useState} from 'react';
 import {WeatherApi} from '../services/api/weatherApi';
 import {WeatherType} from '../types/Types';
 import {Toast} from 'toastify-react-native';
-import i18next from 'i18next';
+import {useTranslation} from 'react-i18next';
 
 export const useWeather = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isError, setIsError] = useState<boolean>(false);
   const [weather, setWeather] = useState<WeatherType>();
   const [query, setQuery] = useState('');
+  const {t} = useTranslation();
 
   useEffect(() => {
     setIsLoading(true);
@@ -20,7 +21,7 @@ export const useWeather = () => {
           setWeather(res?.data);
         })
         .catch(error => {
-          Toast.error(i18next.t(error.message), 'top');
+          Toast.error(t(error.message), 'top');
           console.log(error);
           setIsError(true);
         })
@@ -28,7 +29,7 @@ export const useWeather = () => {
           setIsLoading(false);
         });
     }
-  }, [query]);
+  }, [query, t]);
 
   return {
     isLoading,

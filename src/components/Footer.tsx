@@ -10,17 +10,17 @@ import {
 import Icon from 'react-native-vector-icons/Feather';
 import {Toast} from 'toastify-react-native';
 import HrLine from './HrLine.tsx';
-import {LANGUAGE_SELECT} from '../consts/languageSelector.ts';
+import {APP_LANGUAGE} from '../consts/appLanguage.ts';
 
 export default function Footer() {
   const {t, i18n} = useTranslation();
   const i18CurrentLang = i18n.language;
   const handleChangeLanguageToEN = () => {
-    i18n.changeLanguage(LANGUAGE_SELECT.EN);
+    i18n.changeLanguage(APP_LANGUAGE.EN);
     Toast.success(t('ChangeLang'));
   };
   const handleChangeLanguageToUA = () => {
-    i18n.changeLanguage(LANGUAGE_SELECT.UA);
+    i18n.changeLanguage(APP_LANGUAGE.UA);
     Toast.success(t('ChangeLang'));
   };
   return (
@@ -43,9 +43,9 @@ export default function Footer() {
             color={globalTextColors.lightColor.color}
           />
           <TouchableOpacity
-            disabled={i18CurrentLang === LANGUAGE_SELECT.UA}
+            disabled={i18CurrentLang === APP_LANGUAGE.UA}
             onPress={handleChangeLanguageToUA}>
-            {i18CurrentLang === LANGUAGE_SELECT.EN ? (
+            {i18CurrentLang === APP_LANGUAGE.EN ? (
               <Text style={globalStyles.textMLightColor}>UA</Text>
             ) : (
               <Text style={[globalStyles.textMLightColor, {opacity: 0.5}]}>
@@ -55,9 +55,9 @@ export default function Footer() {
           </TouchableOpacity>
           <Text style={globalStyles.textSLightColor}>|</Text>
           <TouchableOpacity
-            disabled={i18CurrentLang === LANGUAGE_SELECT.EN}
+            disabled={i18CurrentLang === APP_LANGUAGE.EN}
             onPress={handleChangeLanguageToEN}>
-            {i18CurrentLang === LANGUAGE_SELECT.UA ? (
+            {i18CurrentLang === APP_LANGUAGE.UA ? (
               <Text style={globalStyles.textMLightColor}>EN</Text>
             ) : (
               <Text style={[globalStyles.textMLightColor, {opacity: 0.5}]}>
