@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import {
+  ActivityIndicator,
   SafeAreaView,
   ScrollView,
   StatusBar,
   StyleSheet,
-  Text,
   useColorScheme,
   View,
 } from 'react-native';
@@ -18,24 +18,29 @@ import {useTranslation} from 'react-i18next';
 import Footer from './src/components/Footer.tsx';
 import ToastManager from 'toastify-react-native';
 import DiagonalGradient from './src/components/DiagonalGradient.tsx';
-import {globalHorizontalMargin} from './src/Style/GlobalStyles.tsx';
+import {
+  globalHorizontalMargin,
+  globalTextColors,
+} from './src/Style/GlobalStyles.tsx';
 import {GeolocationPermission} from './src/services/geolocation/geolocationPermission.ts';
 import {GetCordinates} from './src/services/geolocation/getCordinates.ts';
 
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
-  const [coordinates, setCoordinates] = useState('');
-  const [query, setQuery] = useState(coordinates || 'Kyiv');
   const [isFahrenheit, setFahrenheit] = useState(false);
   const [hasLocationPermission, setLocationPermission] = useState('');
-  const {isLoading, weather} = useWeather(query);
+  const {isLoading, weather, setIsLoading, setQuery} = useWeather();
   const {t} = useTranslation();
 
   useEffect(() => {
     GeolocationPermission({setLocationPermission}).then(() => {
-      GetCordinates({hasLocationPermission, setCoordinates, setQuery});
+      GetCordinates({
+        hasLocationPermission,
+        setQuery,
+        setIsLoading,
+      });
     });
-  }, [hasLocationPermission]);
+  }, [hasLocationPermission, setIsLoading, setQuery]);
 
   return (
     <DiagonalGradient>
@@ -51,10 +56,10 @@ function App(): React.JSX.Element {
           <View style={styles.appSection}>
             <TopButtons setQuery={setQuery} />
             <InteractiveForm
-              coordinates={coordinates}
+              isLoading={isLoading}
               setQuery={setQuery}
-              setCoordinates={setCoordinates}
               setFahrenheit={setFahrenheit}
+              setIsLoading={setIsLoading}
               hasLocationPermission={hasLocationPermission}
             />
             {!isLoading && weather !== undefined ? (
@@ -81,7 +86,10 @@ function App(): React.JSX.Element {
               </>
             ) : (
               <View>
-                <Text>{isLoading}</Text>
+                <ActivityIndicator
+                  size="large"
+                  color={globalTextColors.lightColor.color}
+                />
               </View>
             )}
           </View>

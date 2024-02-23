@@ -23,6 +23,9 @@ export class WeatherApi {
   }
 
   public setCity(city: string) {
+    if (!city) {
+      this.city = CITY_DEFAULT;
+    }
     this.city = city;
     return this;
   }
@@ -55,8 +58,7 @@ export class WeatherApi {
           error: null,
         };
       }
-
-      // throw new Error('CityNotFound');
+      throw new Error('CityNotFound');
     } catch {
       throw new Error('CityNotFound');
     }

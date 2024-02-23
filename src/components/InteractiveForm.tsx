@@ -21,15 +21,16 @@ type PropsType = {
   setFahrenheit: (value: boolean) => void;
   setQuery: (city: string) => void;
   hasLocationPermission: string;
-  setCoordinates: (cordinates: string) => void;
-  coordinates: string;
+  setIsLoading: (value: boolean) => void;
+  isLoading: boolean;
 };
 
 export default function InteractiveForm({
   setQuery,
   setFahrenheit,
-  setCoordinates,
   hasLocationPermission,
+  setIsLoading,
+  isLoading,
 }: PropsType) {
   const {t} = useTranslation();
   const [city, setCity] = useState('');
@@ -43,7 +44,12 @@ export default function InteractiveForm({
   };
 
   const handleGeolocationClick = () => {
-    GetCordinates({hasLocationPermission, setCoordinates, setQuery});
+    setIsLoading(true);
+    GetCordinates({
+      hasLocationPermission,
+      setQuery,
+      setIsLoading,
+    });
   };
 
   const handleCelsiusClick = () => {
@@ -68,7 +74,6 @@ export default function InteractiveForm({
           style={styles.input}
           autoCapitalize={'words'}
           placeholderTextColor={globalTextColors.lightColor.color}
-          caretHidden={false}
           onEndEditing={handleSearchClick}
         />
         <TouchableOpacity style={styles.searchButton}>
@@ -79,7 +84,7 @@ export default function InteractiveForm({
             onPress={handleSearchClick}
           />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.geolocationButton}>
+        <TouchableOpacity disabled={isLoading} style={styles.geolocationButton}>
           <Icon
             name="map-pin"
             size={18}
