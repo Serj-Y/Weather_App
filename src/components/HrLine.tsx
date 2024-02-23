@@ -3,7 +3,7 @@ import {View} from 'react-native';
 import {
   globalHorizontalMargin,
   globalTextColors,
-} from '../Style/GlobalStyles.tsx';
+} from '../style/GlobalStyles.tsx';
 
 export default function HrLine() {
   return (

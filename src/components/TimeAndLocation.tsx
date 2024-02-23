@@ -6,7 +6,7 @@ import {
   globalStyles,
   globalTextColors,
   globalVerticalMargin,
-} from '../Style/GlobalStyles.tsx';
+} from '../style/GlobalStyles.tsx';
 import {formatToLocalTime} from '../helpers/formatToLocalTime.ts';
 
 export type TimeAndLocationPropsType = {

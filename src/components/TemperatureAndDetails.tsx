@@ -8,7 +8,7 @@ import {
   globalTextColors,
   globalVerticalMargin,
   globalVerticalPadding,
-} from '../Style/GlobalStyles.tsx';
+} from '../style/GlobalStyles.tsx';
 import Icon from 'react-native-vector-icons/Feather';
 import {convertTemperatureUnits} from '../helpers/convertTemperatureUnits.ts';
 import {convertSpeedUnits} from '../helpers/convertSpeedUnits.ts';

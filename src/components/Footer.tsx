@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {useTranslation} from 'react-i18next';
 import {Linking, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {
@@ -6,24 +6,22 @@ import {
   globalStyles,
   globalTextColors,
   globalVerticalMargin,
-} from '../Style/GlobalStyles.tsx';
+} from '../style/GlobalStyles.tsx';
 import Icon from 'react-native-vector-icons/Feather';
 import {Toast} from 'toastify-react-native';
 import HrLine from './HrLine.tsx';
+import {LANGUAGE_SELECT} from '../consts/languageSelector.ts';
 
 export default function Footer() {
   const {t, i18n} = useTranslation();
-  const i18CurrentLang = i18n.resolvedLanguage;
-  const [lang, setLang] = useState(i18CurrentLang);
+  const i18CurrentLang = i18n.language;
   const handleChangeLanguageToEN = () => {
-    i18n.changeLanguage('en');
+    i18n.changeLanguage(LANGUAGE_SELECT.EN);
     Toast.success(t('ChangeLang'));
-    setLang('en');
   };
   const handleChangeLanguageToUA = () => {
-    i18n.changeLanguage('ua-UA');
+    i18n.changeLanguage(LANGUAGE_SELECT.UA);
     Toast.success(t('ChangeLang'));
-    setLang('ua');
   };
   return (
     <>
@@ -45,9 +43,9 @@ export default function Footer() {
             color={globalTextColors.lightColor.color}
           />
           <TouchableOpacity
-            disabled={lang === 'ua'}
+            disabled={i18CurrentLang === LANGUAGE_SELECT.UA}
             onPress={handleChangeLanguageToUA}>
-            {lang === 'en' ? (
+            {i18CurrentLang === LANGUAGE_SELECT.EN ? (
               <Text style={globalStyles.textMLightColor}>UA</Text>
             ) : (
               <Text style={[globalStyles.textMLightColor, {opacity: 0.5}]}>
@@ -57,9 +55,9 @@ export default function Footer() {
           </TouchableOpacity>
           <Text style={globalStyles.textSLightColor}>|</Text>
           <TouchableOpacity
-            disabled={lang === 'en'}
+            disabled={i18CurrentLang === LANGUAGE_SELECT.EN}
             onPress={handleChangeLanguageToEN}>
-            {lang === 'ua' ? (
+            {i18CurrentLang === LANGUAGE_SELECT.UA ? (
               <Text style={globalStyles.textMLightColor}>EN</Text>
             ) : (
               <Text style={[globalStyles.textMLightColor, {opacity: 0.5}]}>

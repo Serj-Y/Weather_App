@@ -1,81 +1,76 @@
 import i18next from 'i18next';
 import {initReactI18next} from 'react-i18next';
-import {getLanguage} from 'react-native-localization-settings';
+import {LANGUAGE_SELECT} from '../../consts/languageSelector.ts';
 
-const lang = getLanguage();
+i18next.use(initReactI18next).init({
+  compatibilityJSON: 'v3',
+  fallbackLng: LANGUAGE_SELECT.EN,
+  resources: {
+    en: {
+      translation: {
+        Realfeel: 'Real feel',
+        Humidity: 'Humidity',
+        Wind: 'Wind',
+        WindSpeedKph: ' km/h',
+        WindSpeedMph: ' mph',
+        Rise: 'Rise:',
+        Max: 'Max',
+        Min: 'Min',
+        Set: 'Set',
 
-i18next
-  // .use(ReactNativeLanguageDetector) // this part do re-render on android device
-  .use(initReactI18next)
-  .init({
-    compatibilityJSON: 'v3',
-    fallbackLng: lang,
-    resources: {
-      en: {
-        translation: {
-          Realfeel: 'Real feel',
-          Humidity: 'Humidity',
-          Wind: 'Wind',
-          WindSpeedKph: ' km/h',
-          WindSpeedMph: ' mph',
-          Rise: 'Rise:',
-          Max: 'Max',
-          Min: 'Min',
-          Set: 'Set',
+        Hourly: 'Hourly',
+        Daily: 'Daily',
+        NotFound: 'Not Found',
+        CityNotFound: 'City Not Found',
+        Weatherfor: 'Weather for',
+        Loading: 'Loading...',
+        ForecastForCurrentPosition: 'Forecast for current position',
 
-          Hourly: 'Hourly',
-          Daily: 'Daily',
-          NotFound: 'Not Found',
-          CityNotFound: 'City Not Found',
-          Weatherfor: 'Weather for',
-          Loading: 'Loading...',
-          ForecastForCurrentPosition: 'Forecast for current position',
+        TemperatureC: 'Temperature in: Celsius',
+        TemperatureF: 'Temperature in: Fahrenheit',
+        Searchcity: 'Search for city...',
 
-          TemperatureC: 'Temperature in: Celsius',
-          TemperatureF: 'Temperature in: Fahrenheit',
-          Searchcity: 'Search for city...',
+        Forecast: 'Forecast',
 
-          Forecast: 'Forecast',
+        AllRights: 'All Rights Reserved',
+        ContactUs: 'Contact us',
+        ChangeLang: 'Language Changed to: English',
 
-          AllRights: 'All Rights Reserved',
-          ContactUs: 'Contact us',
-          ChangeLang: 'Language Changed to: English',
-
-          GeolocationFailed: 'Geolocation check failed...',
-        },
-      },
-      ua: {
-        translation: {
-          Realfeel: 'Відчувається як',
-          Humidity: 'Відносна вологість',
-          Wind: 'Пориви вітру',
-          WindSpeedKph: ' км/год',
-          WindSpeedMph: ' міл/год',
-          Rise: 'Схід',
-          Max: 'Макс',
-          Min: 'Мін',
-          Set: 'Захід',
-
-          Hourly: 'Погодинний',
-          Daily: 'Поденный',
-          NotFound: 'Не знайдено',
-          CityNotFound: 'Місто не знайдено',
-          Weatherfor: 'Прогноз для ',
-          Loading: 'Завантаження...',
-          ForecastForCurrentPosition: 'Прогноз на поточну позицію',
-
-          TemperatureC: 'Температура в: Цельсиях',
-          TemperatureF: 'Температура в: Фаренгейтах',
-          Searchcity: 'Пошук міста...',
-
-          Forecast: 'Прогноз',
-
-          AllRights: 'Всі права захищені.',
-          ContactUs: "Зв'яжіться з нами",
-          ChangeLang: 'Мову змінено на: Українську',
-
-          GeolocationFailed: 'Не вдалося перевірити геолокацію...',
-        },
+        GeolocationFailed: 'Geolocation check failed...',
       },
     },
-  });
+    ua: {
+      translation: {
+        Realfeel: 'Відчувається як',
+        Humidity: 'Відносна вологість',
+        Wind: 'Пориви вітру',
+        WindSpeedKph: ' км/год',
+        WindSpeedMph: ' міл/год',
+        Rise: 'Схід',
+        Max: 'Макс',
+        Min: 'Мін',
+        Set: 'Захід',
+
+        Hourly: 'Погодинний',
+        Daily: 'Поденный',
+        NotFound: 'Не знайдено',
+        CityNotFound: 'Місто не знайдено',
+        Weatherfor: 'Прогноз для ',
+        Loading: 'Завантаження...',
+        ForecastForCurrentPosition: 'Прогноз на поточну позицію',
+
+        TemperatureC: 'Температура в: Цельсиях',
+        TemperatureF: 'Температура в: Фаренгейтах',
+        Searchcity: 'Пошук міста...',
+
+        Forecast: 'Прогноз',
+
+        AllRights: 'Всі права захищені.',
+        ContactUs: "Зв'яжіться з нами",
+        ChangeLang: 'Мову змінено на: Українську',
+
+        GeolocationFailed: 'Не вдалося перевірити геолокацію...',
+      },
+    },
+  },
+});

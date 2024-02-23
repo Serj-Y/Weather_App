@@ -13,7 +13,7 @@ import {
   globalHorizontalMargin,
   globalStyles,
   globalVerticalMargin,
-} from '../Style/GlobalStyles.tsx';
+} from '../style/GlobalStyles.tsx';
 import HrLine from './HrLine.tsx';
 import {convertTime} from '../helpers/convertTime.ts';
 import {convertTemperatureUnits} from '../helpers/convertTemperatureUnits.ts';

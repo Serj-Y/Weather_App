@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {globalHorizontalMargin, globalStyles} from '../Style/GlobalStyles.tsx';
+import {globalHorizontalMargin, globalStyles} from '../style/GlobalStyles.tsx';
 
 type TopButtonType = {
   setQuery: (value: string) => void;

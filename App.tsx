@@ -21,7 +21,7 @@ import DiagonalGradient from './src/components/DiagonalGradient.tsx';
 import {
   globalHorizontalMargin,
   globalTextColors,
-} from './src/Style/GlobalStyles.tsx';
+} from './src/style/GlobalStyles.tsx';
 import {GeolocationPermission} from './src/services/geolocation/geolocationPermission.ts';
 import {GetCordinates} from './src/services/geolocation/getCordinates.ts';
 

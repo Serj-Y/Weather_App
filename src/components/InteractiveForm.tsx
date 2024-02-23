@@ -12,7 +12,7 @@ import {
   globalHorizontalMargin,
   globalStyles,
   globalTextColors,
-} from '../Style/GlobalStyles.tsx';
+} from '../style/GlobalStyles.tsx';
 import Icon from 'react-native-vector-icons/Feather';
 import {Toast} from 'toastify-react-native';
 import {GetCordinates} from '../services/geolocation/getCordinates.ts';
