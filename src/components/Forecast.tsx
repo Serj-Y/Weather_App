@@ -17,10 +17,11 @@ import {
 import HrLine from './HrLine.tsx';
 import {convertTime} from '../helpers/convertTime.ts';
 import {convertTemperatureUnits} from '../helpers/convertTemperatureUnits.ts';
+import {APP_MEASURE_UNITS} from '../consts/appMeasureUnits.ts';
 
 type PropsType = {
   title: string;
-  isFahrenheit: boolean;
+  appMeasureUnit: APP_MEASURE_UNITS;
   items: Array<{
     title: string;
     icon: string;
@@ -29,7 +30,7 @@ type PropsType = {
 };
 const SCREEN_WIDTH = Dimensions.get('screen').width;
 const ITEM_COUNT = 5;
-export default function Forecast({title, items, isFahrenheit}: PropsType) {
+export default function Forecast({title, items, appMeasureUnit}: PropsType) {
   const {t} = useTranslation();
   return (
     <>
@@ -49,12 +50,12 @@ export default function Forecast({title, items, isFahrenheit}: PropsType) {
             <Text
               style={[globalStyles.textSLightColor, globalFontWeight.light]}>
               {item.title.length > 6
-                ? convertTime(item.title, isFahrenheit)
+                ? convertTime(item.title, appMeasureUnit)
                 : item.title}
             </Text>
             <Image style={styles.image} source={{uri: `https:${item.icon}`}} />
             <Text style={[globalStyles.textSLightColor, globalFontWeight.bold]}>
-              {convertTemperatureUnits(item.temp, isFahrenheit)}
+              {convertTemperatureUnits(item.temp, appMeasureUnit)}
             </Text>
           </View>
         )}

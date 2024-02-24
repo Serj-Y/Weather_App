@@ -24,15 +24,22 @@ import {
 } from './src/style/GlobalStyles.tsx';
 import {GeolocationPermission} from './src/services/geolocation/geolocationPermission.ts';
 import {GetCordinates} from './src/services/geolocation/getCordinates.ts';
+import {GetAppLanguageFromStorage} from './src/services/appLanguage/getAppLanguageFromStorage.ts';
+import {APP_MEASURE_UNITS} from './src/consts/appMeasureUnits.ts';
+import {GetAppMeasureUnitsFromStorage} from './src/services/appMeasureUnits/getAppMeasureUnitsFromStorage.ts';
 
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
-  const [isFahrenheit, setFahrenheit] = useState(false);
   const [hasLocationPermission, setLocationPermission] = useState('');
   const {isLoading, weather, setIsLoading, setQuery} = useWeather();
   const {t} = useTranslation();
+  const [appMeasureUnit, setAppMeasureUnit] = useState<APP_MEASURE_UNITS>(
+    APP_MEASURE_UNITS.METRIC,
+  );
 
   useEffect(() => {
+    GetAppMeasureUnitsFromStorage(setAppMeasureUnit);
+    GetAppLanguageFromStorage();
     GeolocationPermission({setLocationPermission}).then(() => {
       GetCordinates({
         hasLocationPermission,
@@ -58,27 +65,28 @@ function App(): React.JSX.Element {
             <InteractiveForm
               isLoading={isLoading}
               setQuery={setQuery}
-              setFahrenheit={setFahrenheit}
               setIsLoading={setIsLoading}
               hasLocationPermission={hasLocationPermission}
+              setAppMeasureUnit={setAppMeasureUnit}
+              appMeasureUnit={appMeasureUnit}
             />
             {!isLoading && weather !== undefined ? (
               <>
                 <TimeAndLocation
                   weather={weather}
-                  isFahrenheit={isFahrenheit}
+                  appMeasureUnit={appMeasureUnit}
                 />
                 <TemperatureAndDetails
                   weather={weather}
-                  isFahrenheit={isFahrenheit}
+                  appMeasureUnit={appMeasureUnit}
                 />
                 <Forecast
-                  isFahrenheit={isFahrenheit}
+                  appMeasureUnit={appMeasureUnit}
                   items={weather.fiveHourForecast}
                   title={t('Hourly')}
                 />
                 <Forecast
-                  isFahrenheit={isFahrenheit}
+                  appMeasureUnit={appMeasureUnit}
                   items={weather.dailyForecast}
                   title={t('Daily')}
                 />

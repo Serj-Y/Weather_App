@@ -22,13 +22,17 @@ export const GetCordinates = ({
         const coordinate = `${lat},${lon}`;
         setQuery(coordinate);
         Toast.success(i18next.t('ForecastForCurrentPosition'));
+        setIsLoading(false);
       },
       error => {
         console.log(error.code, error.message);
         Toast.error(i18next.t('GeolocationFailed'), 'top');
+        setIsLoading(false);
       },
       {enableHighAccuracy: true, timeout: 15000, maximumAge: 10000},
     );
+  } else {
+    Toast.error(i18next.t('GeolocationFailed'), 'top');
     setIsLoading(false);
   }
 };

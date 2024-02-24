@@ -1,8 +1,10 @@
+import {APP_MEASURE_UNITS} from '../consts/appMeasureUnits.ts';
+
 export const convertTemperatureUnits = (
   celsius: number,
-  isFahrenheit: boolean,
+  appMeasureUnit: APP_MEASURE_UNITS,
 ) => {
-  if (isFahrenheit) {
+  if (appMeasureUnit === APP_MEASURE_UNITS.IMPERIAL) {
     const tempF = celsius * (9 / 5) + 32;
     return tempF.toFixed() + '°F';
   } else {

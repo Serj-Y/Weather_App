@@ -16,25 +16,29 @@ import {
 import Icon from 'react-native-vector-icons/Feather';
 import {Toast} from 'toastify-react-native';
 import {GetCordinates} from '../services/geolocation/getCordinates.ts';
+import {storeStringData} from '../services/asyncStorage/storeStringData.ts';
+import {APP_MEASURE_UNITS} from '../consts/appMeasureUnits.ts';
 
 type PropsType = {
-  setFahrenheit: (value: boolean) => void;
   setQuery: (city: string) => void;
   hasLocationPermission: string;
   setIsLoading: (value: boolean) => void;
   isLoading: boolean;
+  appMeasureUnit: APP_MEASURE_UNITS;
+  setAppMeasureUnit: (value: APP_MEASURE_UNITS) => void;
 };
 
 export default function InteractiveForm({
   setQuery,
-  setFahrenheit,
   hasLocationPermission,
   setIsLoading,
   isLoading,
+  appMeasureUnit,
+  setAppMeasureUnit,
 }: PropsType) {
   const {t} = useTranslation();
   const [city, setCity] = useState('');
-  const [tempUnits, setTempUnits] = useState('C');
+  // const [appMeasureUnit, setAppMeasureUnit] = useState(APP_MEASURE_UNITS.C);
 
   const handleSearchClick = () => {
     if (city !== '') {
@@ -53,15 +57,18 @@ export default function InteractiveForm({
   };
 
   const handleCelsiusClick = () => {
-    setFahrenheit(false);
     Toast.success(t('TemperatureC'), 'top');
-    setTempUnits('C');
+    setAppMeasureUnit(APP_MEASURE_UNITS.METRIC);
+    storeStringData({key: 'AppMeasureUnits', value: APP_MEASURE_UNITS.METRIC});
   };
 
   const handleFahrenheitClick = () => {
-    setFahrenheit(true);
     Toast.success(t('TemperatureF'), 'top');
-    setTempUnits('F');
+    setAppMeasureUnit(APP_MEASURE_UNITS.IMPERIAL);
+    storeStringData({
+      key: 'AppMeasureUnits',
+      value: APP_MEASURE_UNITS.IMPERIAL,
+    });
   };
 
   return (
@@ -96,8 +103,8 @@ export default function InteractiveForm({
       <View style={styles.temperatureUnitSection}>
         <TouchableOpacity
           onPress={() => handleCelsiusClick()}
-          disabled={tempUnits === 'C'}>
-          {tempUnits === 'F' ? (
+          disabled={appMeasureUnit === APP_MEASURE_UNITS.METRIC}>
+          {appMeasureUnit === APP_MEASURE_UNITS.IMPERIAL ? (
             <Text style={globalStyles.textMLightColor}>°C </Text>
           ) : (
             <Text style={[globalStyles.textMLightColor, {opacity: 0.5}]}>
@@ -108,8 +115,8 @@ export default function InteractiveForm({
         <Text style={globalStyles.textMLightColor}>|</Text>
         <TouchableOpacity
           onPress={() => handleFahrenheitClick()}
-          disabled={tempUnits === 'F'}>
-          {tempUnits === 'C' ? (
+          disabled={appMeasureUnit === APP_MEASURE_UNITS.IMPERIAL}>
+          {appMeasureUnit === APP_MEASURE_UNITS.METRIC ? (
             <Text style={globalStyles.textMLightColor}>°F </Text>
           ) : (
             <Text style={[globalStyles.textMLightColor, {opacity: 0.5}]}>

@@ -11,6 +11,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import {Toast} from 'toastify-react-native';
 import HrLine from './HrLine.tsx';
 import {APP_LANGUAGE} from '../consts/appLanguage.ts';
+import {storeStringData} from '../services/asyncStorage/storeStringData.ts';
 
 export default function Footer() {
   const {t, i18n} = useTranslation();
@@ -18,10 +19,12 @@ export default function Footer() {
   const handleChangeLanguageToEN = () => {
     i18n.changeLanguage(APP_LANGUAGE.EN);
     Toast.success(t('ChangeLang'));
+    storeStringData({key: 'AppLang', value: APP_LANGUAGE.EN});
   };
   const handleChangeLanguageToUA = () => {
     i18n.changeLanguage(APP_LANGUAGE.UA);
     Toast.success(t('ChangeLang'));
+    storeStringData({key: 'AppLang', value: APP_LANGUAGE.UA});
   };
   return (
     <>

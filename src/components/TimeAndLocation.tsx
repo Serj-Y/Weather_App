@@ -8,22 +8,23 @@ import {
   globalVerticalMargin,
 } from '../style/GlobalStyles.tsx';
 import {formatToLocalTime} from '../helpers/formatToLocalTime.ts';
+import {APP_MEASURE_UNITS} from '../consts/appMeasureUnits.ts';
 
 export type TimeAndLocationPropsType = {
   weather: WeatherType;
-  isFahrenheit: boolean;
+  appMeasureUnit: APP_MEASURE_UNITS;
 };
 
 export default function TimeAndLocation({
   weather: {localtime_epoch, tz_id, name, country},
-  isFahrenheit,
+  appMeasureUnit,
 }: TimeAndLocationPropsType) {
   return (
     <>
       <View style={styles.timeSection}>
         <Text style={[globalStyles.textMLightColor, globalFontWeight.light]}>
           {' '}
-          {formatToLocalTime(localtime_epoch, tz_id, undefined, isFahrenheit)}
+          {formatToLocalTime(localtime_epoch, tz_id, undefined, appMeasureUnit)}
         </Text>
       </View>
       <View style={styles.countySection}>
