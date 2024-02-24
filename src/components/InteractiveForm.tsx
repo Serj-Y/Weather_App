@@ -1,12 +1,6 @@
 import React, {useState} from 'react';
 import {useTranslation} from 'react-i18next';
-import {
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {StyleSheet, Text, TextInput, View} from 'react-native';
 import {
   globalFontWeight,
   globalHorizontalMargin,
@@ -18,6 +12,7 @@ import {Toast} from 'toastify-react-native';
 import {GetCordinates} from '../services/geolocation/getCordinates.ts';
 import {storeStringData} from '../services/asyncStorage/storeStringData.ts';
 import {APP_MEASURE_UNITS} from '../consts/appMeasureUnits.ts';
+import PressableOpacity from './PressableOpacity.tsx';
 
 type PropsType = {
   setQuery: (city: string) => void;
@@ -38,16 +33,15 @@ export default function InteractiveForm({
 }: PropsType) {
   const {t} = useTranslation();
   const [city, setCity] = useState('');
-  // const [appMeasureUnit, setAppMeasureUnit] = useState(APP_MEASURE_UNITS.C);
 
-  const handleSearchClick = () => {
+  const handleSearchPress = () => {
     if (city !== '') {
       setQuery(city);
       setCity('');
     }
   };
 
-  const handleGeolocationClick = () => {
+  const handleGeolocationPress = () => {
     setIsLoading(true);
     GetCordinates({
       hasLocationPermission,
@@ -56,13 +50,13 @@ export default function InteractiveForm({
     });
   };
 
-  const handleCelsiusClick = () => {
+  const handleCelsiusPress = () => {
     Toast.success(t('TemperatureC'), 'top');
     setAppMeasureUnit(APP_MEASURE_UNITS.METRIC);
     storeStringData({key: 'AppMeasureUnits', value: APP_MEASURE_UNITS.METRIC});
   };
 
-  const handleFahrenheitClick = () => {
+  const handleFahrenheitPress = () => {
     Toast.success(t('TemperatureF'), 'top');
     setAppMeasureUnit(APP_MEASURE_UNITS.IMPERIAL);
     storeStringData({
@@ -81,49 +75,35 @@ export default function InteractiveForm({
           style={styles.input}
           autoCapitalize={'words'}
           placeholderTextColor={globalTextColors.lightColor.color}
-          onEndEditing={handleSearchClick}
+          onEndEditing={handleSearchPress}
         />
-        <TouchableOpacity style={styles.searchButton}>
+        <PressableOpacity onPress={handleSearchPress} disabled={isLoading}>
           <Icon
             name="search"
             size={18}
             color={globalTextColors.lightColor.color}
-            onPress={handleSearchClick}
           />
-        </TouchableOpacity>
-        <TouchableOpacity disabled={isLoading} style={styles.geolocationButton}>
+        </PressableOpacity>
+        <PressableOpacity onPress={handleGeolocationPress} disabled={isLoading}>
           <Icon
             name="map-pin"
             size={18}
             color={globalTextColors.lightColor.color}
-            onPress={handleGeolocationClick}
           />
-        </TouchableOpacity>
+        </PressableOpacity>
       </View>
       <View style={styles.temperatureUnitSection}>
-        <TouchableOpacity
-          onPress={() => handleCelsiusClick()}
+        <PressableOpacity
+          onPress={handleCelsiusPress}
           disabled={appMeasureUnit === APP_MEASURE_UNITS.METRIC}>
-          {appMeasureUnit === APP_MEASURE_UNITS.IMPERIAL ? (
-            <Text style={globalStyles.textMLightColor}>°C </Text>
-          ) : (
-            <Text style={[globalStyles.textMLightColor, {opacity: 0.5}]}>
-              °C
-            </Text>
-          )}
-        </TouchableOpacity>
+          <Text style={globalStyles.textMLightColor}>°C </Text>
+        </PressableOpacity>
         <Text style={globalStyles.textMLightColor}>|</Text>
-        <TouchableOpacity
-          onPress={() => handleFahrenheitClick()}
+        <PressableOpacity
+          onPress={handleFahrenheitPress}
           disabled={appMeasureUnit === APP_MEASURE_UNITS.IMPERIAL}>
-          {appMeasureUnit === APP_MEASURE_UNITS.METRIC ? (
-            <Text style={globalStyles.textMLightColor}>°F </Text>
-          ) : (
-            <Text style={[globalStyles.textMLightColor, {opacity: 0.5}]}>
-              °F
-            </Text>
-          )}
-        </TouchableOpacity>
+          <Text style={globalStyles.textMLightColor}>°F</Text>
+        </PressableOpacity>
       </View>
     </View>
   );
@@ -146,16 +126,6 @@ const styles = StyleSheet.create({
     width: '70%',
     backgroundColor: 'transparent',
     color: globalTextColors.lightColor.color,
-  },
-  searchButton: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginHorizontal: globalHorizontalMargin.normal.marginHorizontal,
-  },
-  geolocationButton: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginHorizontal: globalHorizontalMargin.normal.marginHorizontal,
   },
   temperatureUnitSection: {
     flexDirection: 'row',

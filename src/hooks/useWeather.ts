@@ -37,5 +37,6 @@ export const useWeather = () => {
     weather,
     setIsLoading,
     setQuery,
+    query,
   };
 };

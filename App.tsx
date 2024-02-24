@@ -31,7 +31,7 @@ import {GetAppMeasureUnitsFromStorage} from './src/services/appMeasureUnits/getA
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
   const [hasLocationPermission, setLocationPermission] = useState('');
-  const {isLoading, weather, setIsLoading, setQuery} = useWeather();
+  const {isLoading, weather, setIsLoading, setQuery, query} = useWeather();
   const {t} = useTranslation();
   const [appMeasureUnit, setAppMeasureUnit] = useState<APP_MEASURE_UNITS>(
     APP_MEASURE_UNITS.METRIC,
@@ -61,7 +61,7 @@ function App(): React.JSX.Element {
           contentInsetAdjustmentBehavior="automatic"
           showsVerticalScrollIndicator={false}>
           <View style={styles.appSection}>
-            <TopButtons setQuery={setQuery} />
+            <TopButtons setQuery={setQuery} query={query} />
             <InteractiveForm
               isLoading={isLoading}
               setQuery={setQuery}

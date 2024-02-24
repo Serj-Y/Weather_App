@@ -1,6 +1,6 @@
 import React from 'react';
 import {useTranslation} from 'react-i18next';
-import {Linking, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Linking, StyleSheet, Text, View} from 'react-native';
 import {
   globalHorizontalMargin,
   globalStyles,
@@ -12,6 +12,7 @@ import {Toast} from 'toastify-react-native';
 import HrLine from './HrLine.tsx';
 import {APP_LANGUAGE} from '../consts/appLanguage.ts';
 import {storeStringData} from '../services/asyncStorage/storeStringData.ts';
+import PressableOpacity from './PressableOpacity.tsx';
 
 export default function Footer() {
   const {t, i18n} = useTranslation();
@@ -31,13 +32,14 @@ export default function Footer() {
       <HrLine />
       <View style={styles.footerSection}>
         <View style={styles.contactsSection}>
-          <Text style={globalStyles.textSLightColor}>{t('ContactUs')}: </Text>
-          <Icon
-            name="github"
-            size={16}
-            color={globalTextColors.lightColor.color}
-            onPress={() => Linking.openURL('https://github.com/Serj-Y')}
-          />
+          <PressableOpacity
+            onPress={() => Linking.openURL('https://github.com/Serj-Y')}>
+            <Icon
+              name="github"
+              size={16}
+              color={globalTextColors.lightColor.color}
+            />
+          </PressableOpacity>
         </View>
         <View style={styles.changeLanguage}>
           <Icon
@@ -45,29 +47,17 @@ export default function Footer() {
             size={16}
             color={globalTextColors.lightColor.color}
           />
-          <TouchableOpacity
+          <PressableOpacity
             disabled={i18CurrentLang === APP_LANGUAGE.UA}
             onPress={handleChangeLanguageToUA}>
-            {i18CurrentLang === APP_LANGUAGE.EN ? (
-              <Text style={globalStyles.textMLightColor}>UA</Text>
-            ) : (
-              <Text style={[globalStyles.textMLightColor, {opacity: 0.5}]}>
-                UA
-              </Text>
-            )}
-          </TouchableOpacity>
+            <Text style={globalStyles.textMLightColor}>UA</Text>
+          </PressableOpacity>
           <Text style={globalStyles.textSLightColor}>|</Text>
-          <TouchableOpacity
+          <PressableOpacity
             disabled={i18CurrentLang === APP_LANGUAGE.EN}
             onPress={handleChangeLanguageToEN}>
-            {i18CurrentLang === APP_LANGUAGE.UA ? (
-              <Text style={globalStyles.textMLightColor}>EN</Text>
-            ) : (
-              <Text style={[globalStyles.textMLightColor, {opacity: 0.5}]}>
-                EN
-              </Text>
-            )}
-          </TouchableOpacity>
+            <Text style={globalStyles.textMLightColor}>EN</Text>
+          </PressableOpacity>
         </View>
       </View>
     </>

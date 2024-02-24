@@ -1,6 +1,10 @@
 import LinearGradient from 'react-native-linear-gradient';
+import React from 'react';
 
-function DiagonalGradient({children}: any) {
+type DiagonalGradientProps = {
+  children: React.ReactNode;
+};
+function DiagonalGradient({children}: DiagonalGradientProps) {
   return (
     <LinearGradient
       colors={['#06b5d4', '#0ea4e9', '#3b82f6']}

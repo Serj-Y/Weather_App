@@ -1,9 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {APP_MEASURE_UNITS} from '../../consts/appMeasureUnits.ts';
 
 type StoreStringDataProps = {
   key: string;
-  value: APP_MEASURE_UNITS;
+  value: string;
 };
 
 export const storeStringData = async ({key, value}: StoreStringDataProps) => {

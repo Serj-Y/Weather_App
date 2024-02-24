@@ -1,27 +1,29 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import {globalHorizontalMargin, globalStyles} from '../style/GlobalStyles.tsx';
+import PressableOpacity from './PressableOpacity.tsx';
 
 type TopButtonType = {
   setQuery: (value: string) => void;
+  query: string;
 };
 
-export default function TopButtons({setQuery}: TopButtonType) {
+export default function TopButtons({setQuery, query}: TopButtonType) {
   const cites = [
     {
-      id: 1,
+      id: '1',
       title: 'Kyiv',
     },
     {
-      id: 2,
+      id: '2',
       title: 'London',
     },
     {
-      id: 3,
+      id: '3',
       title: 'Milan',
     },
     {
-      id: 4,
+      id: '4',
       title: 'Washington',
     },
   ];
@@ -29,9 +31,13 @@ export default function TopButtons({setQuery}: TopButtonType) {
   return (
     <View style={styles.topButtons}>
       {cites.map(city => (
-        <TouchableOpacity key={city.id} onPress={() => setQuery(city.title)}>
-          <Text style={globalStyles.textMLightColor}>{city.title}</Text>
-        </TouchableOpacity>
+        <View key={city.id}>
+          <PressableOpacity
+            onPress={() => setQuery(city.title)}
+            disabled={city.title === query}>
+            <Text style={globalStyles.textMLightColor}>{city.title}</Text>
+          </PressableOpacity>
+        </View>
       ))}
     </View>
   );

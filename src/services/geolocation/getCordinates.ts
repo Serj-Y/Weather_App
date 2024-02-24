@@ -31,8 +31,5 @@ export const GetCordinates = ({
       },
       {enableHighAccuracy: true, timeout: 15000, maximumAge: 10000},
     );
-  } else {
-    Toast.error(i18next.t('GeolocationFailed'), 'top');
-    setIsLoading(false);
   }
 };
