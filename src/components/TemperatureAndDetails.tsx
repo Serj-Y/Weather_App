@@ -14,7 +14,6 @@ import {convertTemperatureUnits} from '../helpers/convertTemperatureUnits.ts';
 import {convertSpeedUnits} from '../helpers/convertSpeedUnits.ts';
 import {convertTime} from '../helpers/convertTime.ts';
 import {APP_MEASURE_UNITS} from '../consts/appMeasureUnits.ts';
-import {GetAppLangForLuxon} from '../helpers/getCurrentLangForLuxon.ts';
 
 type PropsType = {
   weather: {
@@ -107,13 +106,8 @@ export default function TemperatureAndDetails({
           size={16}
           color={globalTextColors.lightColor.color}
         />
-        <Text
-          style={[
-            globalStyles.textSLightColor,
-            globalFontWeight.bold,
-            {textTransform: 'capitalize'},
-          ]}>
-          {convertTime(sunrise, appMeasureUnit, GetAppLangForLuxon())}
+        <Text style={[globalStyles.textSLightColor, globalFontWeight.bold]}>
+          {convertTime(sunrise, appMeasureUnit)}
         </Text>
         <Text style={globalStyles.textSLightColor}>|</Text>
         <Icon
@@ -140,8 +134,8 @@ export default function TemperatureAndDetails({
           color={globalTextColors.lightColor.color}
         />
         <Text style={[globalStyles.textSLightColor, globalFontWeight.light]}>
-          <Text style={[globalFontWeight.bold, {textTransform: 'capitalize'}]}>
-            {convertTime(sunset, appMeasureUnit, GetAppLangForLuxon())}
+          <Text style={[globalFontWeight.bold]}>
+            {convertTime(sunset, appMeasureUnit)}
           </Text>
         </Text>
       </View>

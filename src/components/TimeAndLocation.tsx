@@ -9,6 +9,8 @@ import {
 } from '../style/GlobalStyles.tsx';
 import {formatToLocalTime} from '../helpers/formatToLocalTime.ts';
 import {APP_MEASURE_UNITS} from '../consts/appMeasureUnits.ts';
+import {formatToLocalDate} from '../helpers/formatToLocalDate.ts';
+import i18next from 'i18next';
 
 export type TimeAndLocationPropsType = {
   weather: WeatherType;
@@ -22,13 +24,15 @@ export default function TimeAndLocation({
   return (
     <>
       <View style={styles.timeSection}>
-        <Text
-          style={[
-            globalStyles.textMLightColor,
-            globalFontWeight.light,
-            {textTransform: 'capitalize'},
-          ]}>
-          {formatToLocalTime(localtime_epoch, tz_id, undefined, appMeasureUnit)}
+        <Text style={[globalStyles.textMLightColor, globalFontWeight.light]}>
+          <Text style={{textTransform: 'capitalize'}}>
+            {formatToLocalDate(localtime_epoch, tz_id)}
+          </Text>
+          <Text>
+            {' | '}
+            {i18next.t('LocalTime')}
+            {formatToLocalTime(localtime_epoch, tz_id, appMeasureUnit)}
+          </Text>
         </Text>
       </View>
       <View style={styles.countySection}>

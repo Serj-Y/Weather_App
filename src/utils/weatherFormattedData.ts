@@ -1,6 +1,6 @@
 import {WeatherDataType} from '../types/Types';
-import {formatToLocalTime} from '../helpers/formatToLocalTime.ts';
 import {DateTime} from 'luxon';
+import {formatToLocalDate} from '../helpers/formatToLocalDate.ts';
 
 export class WeatherFormattedData {
   private weather: WeatherDataType;
@@ -46,7 +46,7 @@ export class WeatherFormattedData {
     let {tz_id, forecast} = this.weather;
     const formatted = forecast.forecastday.map(d => {
       return {
-        title: formatToLocalTime(d.date_epoch, tz_id, 'dd.MM '),
+        title: formatToLocalDate(d.date_epoch, tz_id, 'EEE'),
         temp: d.day.maxtemp_c,
         icon: d.day.condition.icon,
       };
@@ -65,7 +65,8 @@ export class WeatherFormattedData {
       .map(({time_epoch, temp_c, condition: {icon}}) => ({
         title: DateTime.fromSeconds(time_epoch)
           .setZone(location.tz_id)
-          .toFormat('hh:mm a'),
+          .toFormat('hh:mm a')
+          .toUpperCase(),
         temp: temp_c,
         icon,
       }));

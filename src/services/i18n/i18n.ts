@@ -8,7 +8,7 @@ i18next.use(initReactI18next).init({
   resources: {
     en: {
       translation: {
-        LocalTime: 'Local Time:',
+        LocalTime: 'Local Time: ',
         Realfeel: 'Real feel',
         Humidity: 'Humidity',
         Wind: 'Wind',
@@ -77,7 +77,7 @@ i18next.use(initReactI18next).init({
     },
     ua: {
       translation: {
-        LocalTime: 'Місцевий час:',
+        LocalTime: 'Місцевий час: ',
         Realfeel: 'Відчувається як',
         Humidity: 'Відносна вологість',
         Wind: 'Пориви вітру',
