@@ -22,8 +22,12 @@ export default function TimeAndLocation({
   return (
     <>
       <View style={styles.timeSection}>
-        <Text style={[globalStyles.textMLightColor, globalFontWeight.light]}>
-          {' '}
+        <Text
+          style={[
+            globalStyles.textMLightColor,
+            globalFontWeight.light,
+            {textTransform: 'capitalize'},
+          ]}>
           {formatToLocalTime(localtime_epoch, tz_id, undefined, appMeasureUnit)}
         </Text>
       </View>

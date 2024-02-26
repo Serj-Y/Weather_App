@@ -18,6 +18,7 @@ import HrLine from './HrLine.tsx';
 import {convertTime} from '../helpers/convertTime.ts';
 import {convertTemperatureUnits} from '../helpers/convertTemperatureUnits.ts';
 import {APP_MEASURE_UNITS} from '../consts/appMeasureUnits.ts';
+import {GetAppLangForLuxon} from '../helpers/getCurrentLangForLuxon.ts';
 
 type PropsType = {
   title: string;
@@ -48,9 +49,13 @@ export default function Forecast({title, items, appMeasureUnit}: PropsType) {
         renderItem={({item}) => (
           <View style={styles.item} key={item.title}>
             <Text
-              style={[globalStyles.textSLightColor, globalFontWeight.light]}>
+              style={[
+                globalStyles.textSLightColor,
+                globalFontWeight.light,
+                {textTransform: 'capitalize'},
+              ]}>
               {item.title.length > 6
-                ? convertTime(item.title, appMeasureUnit)
+                ? convertTime(item.title, appMeasureUnit, GetAppLangForLuxon())
                 : item.title}
             </Text>
             <Image style={styles.image} source={{uri: `https:${item.icon}`}} />

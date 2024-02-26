@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
   },
   temperatureUnitSection: {
     flexDirection: 'row',
-    gap: 10,
     alignItems: 'center',
+    justifyContent: 'space-around',
   },
 });

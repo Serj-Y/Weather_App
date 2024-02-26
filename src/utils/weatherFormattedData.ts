@@ -1,5 +1,6 @@
 import {WeatherDataType} from '../types/Types';
 import {formatToLocalTime} from '../helpers/formatToLocalTime.ts';
+import {DateTime} from 'luxon';
 
 export class WeatherFormattedData {
   private weather: WeatherDataType;
@@ -60,10 +61,11 @@ export class WeatherFormattedData {
       f => f.time_epoch >= location.localtime_epoch,
     );
     const hourForecast = filtredTwoDaysHours
-
       .slice(0, 24)
       .map(({time_epoch, temp_c, condition: {icon}}) => ({
-        title: formatToLocalTime(time_epoch, location.tz_id, 'hh:mm a'),
+        title: DateTime.fromSeconds(time_epoch)
+          .setZone(location.tz_id)
+          .toFormat('hh:mm a'),
         temp: temp_c,
         icon,
       }));
