@@ -34,7 +34,7 @@ export default function TopButtons({setQuery, query}: TopButtonType) {
         <View key={city.id}>
           <PressableOpacity
             onPress={() => setQuery(city.title)}
-            disabled={city.title === query}>
+            disabled={city.title === query.trim()}>
             <Text style={globalStyles.textMLightColor}>{city.title}</Text>
           </PressableOpacity>
         </View>

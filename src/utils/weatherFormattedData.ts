@@ -13,6 +13,8 @@ export class WeatherFormattedData {
     const {lat, lon, name, country, tz_id, localtime_epoch} =
       this.weather.location;
     const {
+      last_updated_epoch,
+      last_updated,
       temp_c,
       wind_kph,
       humidity,
@@ -39,6 +41,8 @@ export class WeatherFormattedData {
       tz_id,
       sunrise,
       sunset,
+      last_updated_epoch,
+      last_updated,
     };
   }
 

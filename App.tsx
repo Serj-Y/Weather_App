@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import {
   ActivityIndicator,
   SafeAreaView,
-  ScrollView,
   StatusBar,
   StyleSheet,
   useColorScheme,
@@ -27,6 +26,8 @@ import {GetCordinates} from './src/services/geolocation/getCordinates.ts';
 import {GetAppLanguageFromStorage} from './src/services/appLanguage/getAppLanguageFromStorage.ts';
 import {APP_MEASURE_UNITS} from './src/consts/appMeasureUnits.ts';
 import {GetAppMeasureUnitsFromStorage} from './src/services/appMeasureUnits/getAppMeasureUnitsFromStorage.ts';
+import {LastRefresh} from './src/components/LastRefresh.tsx';
+import {ScrollViewProvider} from './src/components/ScrollViewProvider.tsx';
 
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -57,9 +58,10 @@ function App(): React.JSX.Element {
           backgroundColor={'transparent'}
           translucent={true}
         />
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          showsVerticalScrollIndicator={false}>
+        <ScrollViewProvider
+          query={query}
+          setIsLoading={setIsLoading}
+          setQuery={setQuery}>
           <View style={styles.appSection}>
             <TopButtons setQuery={setQuery} query={query} />
             <InteractiveForm
@@ -72,6 +74,7 @@ function App(): React.JSX.Element {
             />
             {!isLoading && weather !== undefined ? (
               <>
+                <LastRefresh lastUpdateInSeconds={weather.last_updated_epoch} />
                 <TimeAndLocation
                   weather={weather}
                   appMeasureUnit={appMeasureUnit}
@@ -101,7 +104,7 @@ function App(): React.JSX.Element {
               </View>
             )}
           </View>
-        </ScrollView>
+        </ScrollViewProvider>
         <ToastManager animationStyle={'rightInOut'} style={styles.toast} />
       </SafeAreaView>
     </DiagonalGradient>

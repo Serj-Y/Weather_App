@@ -8,6 +8,7 @@ i18next.use(initReactI18next).init({
   resources: {
     en: {
       translation: {
+        LastUpdate: 'Last Update: ',
         LocalTime: 'Local Time: ',
         Realfeel: 'Real feel',
         Humidity: 'Humidity',
@@ -77,6 +78,7 @@ i18next.use(initReactI18next).init({
     },
     ua: {
       translation: {
+        LastUpdate: 'Останнє оновлення: ',
         LocalTime: 'Місцевий час: ',
         Realfeel: 'Відчувається як',
         Humidity: 'Відносна вологість',
@@ -89,7 +91,7 @@ i18next.use(initReactI18next).init({
         Set: 'Захід',
 
         Hourly: 'Погодинний',
-        Daily: 'Поденный',
+        Daily: 'Поденний',
         NotFound: 'Не знайдено',
         CityNotFound: 'Місто не знайдено',
         Weatherfor: 'Прогноз для ',

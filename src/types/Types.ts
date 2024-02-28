@@ -19,6 +19,8 @@ export type CurrentWeatherType = {
   tz_id: string;
   sunrise: string;
   sunset: string;
+  last_updated_epoch: number;
+  last_updated: string;
 };
 
 export type DailyForecastType = {
@@ -41,7 +43,7 @@ export type WeatherForecastHourType = {
   time: Date;
   temp_c: number;
   time_epoch: number;
-  condition: { icon: string };
+  condition: {icon: string};
 };
 
 export type WeatherForecastDayType = {
@@ -73,6 +75,8 @@ export type WeatherDataType = {
     forecastday: Array<WeatherForecastDayType>;
   };
   current: {
+    last_updated_epoch: number;
+    last_updated: string;
     temp_c: number;
     wind_kph: number;
     humidity: number;
