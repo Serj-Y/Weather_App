@@ -2,6 +2,7 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {globalHorizontalMargin, globalStyles} from '../style/GlobalStyles.tsx';
 import PressableOpacity from './PressableOpacity';
+import {HAPTIC_FEEDBACK, HapticFeedback} from '../utils/hapticFeedback.ts';
 
 type TopButtonType = {
   setQuery: (value: string) => void;
@@ -28,12 +29,17 @@ export default function TopButtons({setQuery, query}: TopButtonType) {
     },
   ];
 
+  function onCityPressHandler(cityTitle: string) {
+    setQuery(cityTitle);
+    HapticFeedback({feedbackType: HAPTIC_FEEDBACK.SUCCESS});
+  }
+
   return (
     <View style={styles.topButtons}>
       {cites.map(city => (
         <View key={city.id}>
           <PressableOpacity
-            onPress={() => setQuery(city.title)}
+            onPress={() => onCityPressHandler(city.title)}
             disabled={city.title === query.trim()}>
             <Text style={globalStyles.textMLightColor}>{city.title}</Text>
           </PressableOpacity>

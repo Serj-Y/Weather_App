@@ -1,5 +1,6 @@
 import {RefreshControl, ScrollView} from 'react-native';
 import React from 'react';
+import {HAPTIC_FEEDBACK, HapticFeedback} from '../utils/hapticFeedback.ts';
 
 type ScrollViewProviderProps = {
   children: React.ReactNode;
@@ -16,6 +17,7 @@ export const ScrollViewProvider = ({
   function refreshWeatherData() {
     setIsLoading(true);
     setQuery(prevState => prevState + ' ');
+    HapticFeedback({feedbackType: HAPTIC_FEEDBACK.SUCCESS});
   }
   return (
     <ScrollView

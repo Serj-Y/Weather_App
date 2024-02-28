@@ -13,6 +13,7 @@ import {GetCordinates} from '../services/geolocation/getCordinates.ts';
 import {storeStringData} from '../services/asyncStorage/storeStringData.ts';
 import {APP_MEASURE_UNITS} from '../consts/appMeasureUnits.ts';
 import PressableOpacity from './PressableOpacity.tsx';
+import {HAPTIC_FEEDBACK, HapticFeedback} from '../utils/hapticFeedback.ts';
 
 type PropsType = {
   setQuery: (city: string) => void;
@@ -48,12 +49,14 @@ export default function InteractiveForm({
       setQuery,
       setIsLoading,
     });
+    HapticFeedback({feedbackType: HAPTIC_FEEDBACK.SUCCESS});
   };
 
   const handleCelsiusPress = () => {
     Toast.success(t('TemperatureC'), 'top');
     setAppMeasureUnit(APP_MEASURE_UNITS.METRIC);
     storeStringData({key: 'AppMeasureUnits', value: APP_MEASURE_UNITS.METRIC});
+    HapticFeedback({feedbackType: HAPTIC_FEEDBACK.SUCCESS});
   };
 
   const handleFahrenheitPress = () => {
@@ -63,6 +66,7 @@ export default function InteractiveForm({
       key: 'AppMeasureUnits',
       value: APP_MEASURE_UNITS.IMPERIAL,
     });
+    HapticFeedback({feedbackType: HAPTIC_FEEDBACK.SUCCESS});
   };
 
   return (
@@ -77,7 +81,9 @@ export default function InteractiveForm({
           placeholderTextColor={globalTextColors.lightColor.color}
           onEndEditing={handleSearchPress}
         />
-        <PressableOpacity onPress={handleSearchPress} disabled={isLoading}>
+        <PressableOpacity
+          onPress={handleSearchPress}
+          disabled={isLoading || city === ''}>
           <Icon
             name="search"
             size={18}

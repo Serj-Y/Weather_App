@@ -13,6 +13,7 @@ import HrLine from './HrLine.tsx';
 import {APP_LANGUAGE} from '../consts/appLanguage.ts';
 import {storeStringData} from '../services/asyncStorage/storeStringData.ts';
 import PressableOpacity from './PressableOpacity.tsx';
+import {HAPTIC_FEEDBACK, HapticFeedback} from '../utils/hapticFeedback.ts';
 
 export default function Footer() {
   const {t, i18n} = useTranslation();
@@ -21,19 +22,25 @@ export default function Footer() {
     i18n.changeLanguage(APP_LANGUAGE.EN);
     Toast.success(t('ChangeLang'));
     storeStringData({key: 'AppLang', value: APP_LANGUAGE.EN});
+    HapticFeedback({feedbackType: HAPTIC_FEEDBACK.SUCCESS});
   };
   const handleChangeLanguageToUA = () => {
     i18n.changeLanguage(APP_LANGUAGE.UA);
     Toast.success(t('ChangeLang'));
     storeStringData({key: 'AppLang', value: APP_LANGUAGE.UA});
+    HapticFeedback({feedbackType: HAPTIC_FEEDBACK.SUCCESS});
   };
+
+  const onPressGitLink = () => {
+    Linking.openURL('https://github.com/Serj-Y');
+  };
+
   return (
     <>
       <HrLine />
       <View style={styles.footerSection}>
         <View style={styles.contactsSection}>
-          <PressableOpacity
-            onPress={() => Linking.openURL('https://github.com/Serj-Y')}>
+          <PressableOpacity onPress={onPressGitLink}>
             <Icon
               name="github"
               size={16}
