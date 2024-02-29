@@ -2,7 +2,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {DateTime} from 'luxon';
 import {globalFontWeight, globalStyles} from '../style/GlobalStyles.tsx';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {is24HourFormat} from 'react-native-device-time-format';
 import {APP_LANGUAGE} from '../consts/appLanguage.ts';
 
@@ -13,9 +13,12 @@ export const LastRefresh = ({lastUpdateInSeconds}: LastRefreshProps) => {
   const {t, i18n} = useTranslation();
   const [is24h, setIs24h] = useState(false);
 
-  is24HourFormat().then(response => {
-    setIs24h(response);
-  });
+  useEffect(() => {
+    is24HourFormat().then(response => {
+      setIs24h(response);
+    });
+  }, []);
+
   const locale = i18n.language === APP_LANGUAGE.UA ? 'uk' : 'en';
   const format = is24h ? 'HH:mm' : 'hh:mm a';
   const lastUpdate = DateTime.fromSeconds(lastUpdateInSeconds)

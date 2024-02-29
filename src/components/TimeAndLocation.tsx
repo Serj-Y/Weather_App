@@ -10,56 +10,55 @@ import {
 import {formatToLocalTime} from '../helpers/formatToLocalTime.ts';
 import {APP_MEASURE_UNITS} from '../consts/appMeasureUnits.ts';
 import {formatToLocalDate} from '../helpers/formatToLocalDate.ts';
-import i18next from 'i18next';
+import {useTranslation} from 'react-i18next';
 
 export type TimeAndLocationPropsType = {
   weather: WeatherType;
   appMeasureUnit: APP_MEASURE_UNITS;
 };
 
-export default function TimeAndLocation({
+export const TimeAndLocation = ({
   weather: {localtime_epoch, tz_id, name, country},
   appMeasureUnit,
-}: TimeAndLocationPropsType) {
+}: TimeAndLocationPropsType) => {
+  const {t} = useTranslation();
   return (
     <>
-      <View style={styles.timeSection}>
+      <View style={styles.section}>
+        <Text
+          style={[
+            globalStyles.textMLightColor,
+            globalFontWeight.light,
+            {textTransform: 'capitalize'},
+          ]}>
+          {formatToLocalDate(localtime_epoch, tz_id)}
+        </Text>
         <Text style={[globalStyles.textMLightColor, globalFontWeight.light]}>
-          <Text style={{textTransform: 'capitalize'}}>
-            {formatToLocalDate(localtime_epoch, tz_id)}
-          </Text>
-          <Text>
-            {' | '}
-            {i18next.t('LocalTime')}
-            {formatToLocalTime(localtime_epoch, tz_id, appMeasureUnit)}
-          </Text>
+          {' | '}
+          {t('LocalTime')}
+          {formatToLocalTime(localtime_epoch, tz_id, appMeasureUnit)}
         </Text>
       </View>
-      <View style={styles.countySection}>
-        <Text style={styles.country}>
-          {name}, {country}
-        </Text>
+      <View style={styles.section}>
+        <Text style={styles.location}>{name},</Text>
+        <Text style={styles.location}>{country}</Text>
       </View>
     </>
   );
-}
+};
 const styles = StyleSheet.create({
-  timeSection: {
+  section: {
     alignItems: 'center',
     justifyContent: 'center',
+    flexDirection: 'row',
     marginVertical: globalVerticalMargin.normal.marginVertical,
+    flexWrap: 'wrap',
   },
-  countySection: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginVertical: globalVerticalMargin.normal.marginVertical,
-  },
-  country: {
+  location: {
     color: globalTextColors.lightColor.color,
     alignItems: 'center',
     fontSize: 24,
-    fontWeight: globalFontWeight.extraBold.fontWeight,
-    overflow: 'hidden',
-    flexWrap: 'nowrap',
+    fontWeight: globalFontWeight.bold.fontWeight,
+    marginHorizontal: 2,
   },
 });

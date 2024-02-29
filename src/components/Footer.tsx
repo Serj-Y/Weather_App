@@ -1,12 +1,7 @@
 import React from 'react';
 import {useTranslation} from 'react-i18next';
 import {Linking, StyleSheet, Text, View} from 'react-native';
-import {
-  globalHorizontalMargin,
-  globalStyles,
-  globalTextColors,
-  globalVerticalMargin,
-} from '../style/GlobalStyles.tsx';
+import {globalStyles, globalTextColors} from '../style/GlobalStyles.tsx';
 import Icon from 'react-native-vector-icons/Feather';
 import {Toast} from 'toastify-react-native';
 import HrLine from './HrLine.tsx';
@@ -39,16 +34,14 @@ export default function Footer() {
     <>
       <HrLine />
       <View style={styles.footerSection}>
-        <View style={styles.contactsSection}>
-          <PressableOpacity onPress={onPressGitLink}>
-            <Icon
-              name="github"
-              size={16}
-              color={globalTextColors.lightColor.color}
-            />
-          </PressableOpacity>
-        </View>
-        <View style={styles.changeLanguage}>
+        <PressableOpacity onPress={onPressGitLink}>
+          <Icon
+            name="github"
+            size={16}
+            color={globalTextColors.lightColor.color}
+          />
+        </PressableOpacity>
+        <View style={styles.footerSection}>
           <Icon
             name="globe"
             size={16}
@@ -76,21 +69,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginVertical: globalVerticalMargin.normal.marginVertical,
-    marginHorizontal: globalHorizontalMargin.normal.marginHorizontal,
+    marginVertical: 8,
+    marginHorizontal: 6,
   },
   changeLanguageSection: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-around',
-  },
-  changeLanguage: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-around',
-    width: '25%',
-  },
-  contactsSection: {
-    flexDirection: 'row',
   },
 });

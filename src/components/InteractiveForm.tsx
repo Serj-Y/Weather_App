@@ -36,10 +36,8 @@ export default function InteractiveForm({
   const [city, setCity] = useState('');
 
   const handleSearchPress = () => {
-    if (city !== '') {
-      setQuery(city);
-      setCity('');
-    }
+    setQuery(city.trim());
+    setCity('');
   };
 
   const handleGeolocationPress = () => {
@@ -83,7 +81,7 @@ export default function InteractiveForm({
         />
         <PressableOpacity
           onPress={handleSearchPress}
-          disabled={isLoading || city === ''}>
+          disabled={isLoading || city.trim() === ''}>
           <Icon
             name="search"
             size={18}
@@ -102,7 +100,7 @@ export default function InteractiveForm({
         <PressableOpacity
           onPress={handleCelsiusPress}
           disabled={appMeasureUnit === APP_MEASURE_UNITS.METRIC}>
-          <Text style={globalStyles.textMLightColor}>°C </Text>
+          <Text style={globalStyles.textMLightColor}>°C</Text>
         </PressableOpacity>
         <Text style={globalStyles.textMLightColor}>|</Text>
         <PressableOpacity

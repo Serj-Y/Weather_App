@@ -10,7 +10,7 @@ import {
 import {useWeather} from './src/hooks/useWeather.ts';
 import InteractiveForm from './src/components/InteractiveForm.tsx';
 import TopButtons from './src/components/TopButtons.tsx';
-import TimeAndLocation from './src/components/TimeAndLocation.tsx';
+import {TimeAndLocation} from './src/components/TimeAndLocation.tsx';
 import TemperatureAndDetails from './src/components/TemperatureAndDetails.tsx';
 import Forecast from './src/components/Forecast.tsx';
 import {useTranslation} from 'react-i18next';
