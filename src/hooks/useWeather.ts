@@ -3,6 +3,7 @@ import {WeatherApi} from '../services/api/weatherApi';
 import {WeatherType} from '../types/Types';
 import {Toast} from 'toastify-react-native';
 import {useTranslation} from 'react-i18next';
+import {HAPTIC_FEEDBACK, HapticFeedback} from '../utils/hapticFeedback.ts';
 
 export const useWeather = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -22,7 +23,7 @@ export const useWeather = () => {
         })
         .catch(error => {
           Toast.error(t(error.message), 'top');
-          console.log(error);
+          HapticFeedback({feedbackType: HAPTIC_FEEDBACK.ERROR});
           setIsError(true);
         })
         .finally(() => {

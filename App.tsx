@@ -28,17 +28,21 @@ import {APP_MEASURE_UNITS} from './src/consts/appMeasureUnits.ts';
 import {GetAppMeasureUnitsFromStorage} from './src/services/appMeasureUnits/getAppMeasureUnitsFromStorage.ts';
 import {LastRefresh} from './src/components/LastRefresh.tsx';
 import {ScrollViewProvider} from './src/components/ScrollViewProvider.tsx';
+import {AddToFavorite} from './src/components/AddToFavorite.tsx';
+import {GetAppFavoriteListFromStorage} from './src/services/appFavoriteList/getFavoriteListFromStorage.ts';
 
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
   const [hasLocationPermission, setLocationPermission] = useState('');
   const {isLoading, weather, setIsLoading, setQuery, query} = useWeather();
+  const [favorite, setFavorite] = useState<Array<string>>([]);
   const {t} = useTranslation();
   const [appMeasureUnit, setAppMeasureUnit] = useState<APP_MEASURE_UNITS>(
     APP_MEASURE_UNITS.METRIC,
   );
 
   useEffect(() => {
+    GetAppFavoriteListFromStorage(setFavorite);
     GetAppMeasureUnitsFromStorage(setAppMeasureUnit);
     GetAppLanguageFromStorage();
     GeolocationPermission({setLocationPermission}).then(() => {
@@ -63,7 +67,12 @@ function App(): React.JSX.Element {
           setIsLoading={setIsLoading}
           setQuery={setQuery}>
           <View style={styles.appSection}>
-            <TopButtons setQuery={setQuery} query={query} />
+            <TopButtons
+              query={query}
+              setQuery={setQuery}
+              favorite={favorite}
+              cityName={weather?.name}
+            />
             <InteractiveForm
               isLoading={isLoading}
               setQuery={setQuery}
@@ -74,7 +83,18 @@ function App(): React.JSX.Element {
             />
             {!isLoading && weather !== undefined ? (
               <>
-                <LastRefresh lastUpdateInSeconds={weather.last_updated_epoch} />
+                <View style={styles.lastUpdateAddToFavoriteSection}>
+                  <View style={styles.placeholderView} />
+                  <LastRefresh
+                    lastUpdateInSeconds={weather.last_updated_epoch}
+                  />
+                  <AddToFavorite
+                    city={weather.name}
+                    favorite={favorite}
+                    setFavorite={setFavorite}
+                  />
+                </View>
+
                 <TimeAndLocation
                   weather={weather}
                   appMeasureUnit={appMeasureUnit}
@@ -122,10 +142,20 @@ const styles = StyleSheet.create({
     marginHorizontal: globalHorizontalMargin.normal.marginHorizontal,
     paddingBottom: 11,
   },
-  sectionDescription: {
+  descriptionSection: {
     marginTop: 8,
     fontSize: 18,
     fontWeight: '400',
+  },
+  lastUpdateAddToFavoriteSection: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    alignContent: 'center',
+  },
+  placeholderView: {
+    width: 20,
+    marginRight: 20,
   },
   toast: {
     position: 'absolute',

@@ -11,7 +11,7 @@ type HapticFeedbackProps = {
 
 const options = {
   enableVibrateFallback: true,
-  ignoreAndroidSystemSettings: false,
+  ignoreAndroidSystemSettings: true,
 };
 
 export const HapticFeedback = ({feedbackType}: HapticFeedbackProps) => {

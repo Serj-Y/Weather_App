@@ -5,6 +5,7 @@ import {globalHorizontalMargin} from '../style/GlobalStyles.tsx';
 type PressableOpacityProps = {
   children: React.ReactNode;
   onPress: () => void;
+  onLongPress?: () => void;
   disabled?: boolean;
   style?: StyleProp<TouchableOpacity | any>;
   key?: string;
@@ -13,12 +14,14 @@ function PressableOpacity({
   children,
   disabled,
   onPress,
+  onLongPress,
   style,
 }: PressableOpacityProps) {
   return (
     <TouchableOpacity
       onPress={onPress}
       disabled={disabled}
+      onLongPress={onLongPress}
       style={[
         disabled ? styles.defaultDisabledStyle : styles.defaultStyle,
         style,

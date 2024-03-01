@@ -1,6 +1,7 @@
 import Geolocation from 'react-native-geolocation-service';
 import {Toast} from 'toastify-react-native';
 import i18next from 'i18next';
+import {HAPTIC_FEEDBACK, HapticFeedback} from '../../utils/hapticFeedback.ts';
 
 type GetCordinatesProps = {
   hasLocationPermission: string;
@@ -25,6 +26,7 @@ export const GetCordinates = ({
         setIsLoading(false);
       },
       error => {
+        HapticFeedback({feedbackType: HAPTIC_FEEDBACK.ERROR});
         console.log(error.code, error.message);
         Toast.error(i18next.t('GeolocationFailed'), 'top');
         setIsLoading(false);

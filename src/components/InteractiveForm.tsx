@@ -14,6 +14,7 @@ import {storeStringData} from '../services/asyncStorage/storeStringData.ts';
 import {APP_MEASURE_UNITS} from '../consts/appMeasureUnits.ts';
 import PressableOpacity from './PressableOpacity.tsx';
 import {HAPTIC_FEEDBACK, HapticFeedback} from '../utils/hapticFeedback.ts';
+import {MIN_SEARCH_INPUT_LENGTH} from '../consts/appMinMaxLength.ts';
 
 type PropsType = {
   setQuery: (city: string) => void;
@@ -36,8 +37,10 @@ export default function InteractiveForm({
   const [city, setCity] = useState('');
 
   const handleSearchPress = () => {
-    setQuery(city.trim());
-    setCity('');
+    if (city.length >= MIN_SEARCH_INPUT_LENGTH.THREE) {
+      setQuery(city);
+      setCity('');
+    }
   };
 
   const handleGeolocationPress = () => {
@@ -81,7 +84,7 @@ export default function InteractiveForm({
         />
         <PressableOpacity
           onPress={handleSearchPress}
-          disabled={isLoading || city.trim() === ''}>
+          disabled={isLoading || city.length < MIN_SEARCH_INPUT_LENGTH.THREE}>
           <Icon
             name="search"
             size={18}
