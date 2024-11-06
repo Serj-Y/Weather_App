@@ -38,7 +38,7 @@ function App(): React.JSX.Element {
   const [favorite, setFavorite] = useState<Array<string>>([]);
   const {t} = useTranslation();
   const [appMeasureUnit, setAppMeasureUnit] = useState<APP_MEASURE_UNITS>(
-    APP_MEASURE_UNITS.METRIC,
+    APP_MEASURE_UNITS.METRIC
   );
 
   useEffect(() => {
