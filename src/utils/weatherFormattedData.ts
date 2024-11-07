@@ -50,7 +50,7 @@ export class WeatherFormattedData {
     let {tz_id, forecast} = this.weather;
     const formatted = forecast.forecastday.map(d => {
       return {
-        title: formatToLocalDate(d.date_epoch, tz_id, 'EEE'),
+ title: formatToLocalDate(d.date_epoch, tz_id, true),
         temp: d.day.maxtemp_c,
         icon: d.day.condition.icon,
       };

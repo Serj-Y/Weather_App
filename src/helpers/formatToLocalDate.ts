@@ -1,18 +1,24 @@
 import {DateTime} from 'luxon';
-import i18next from 'i18next';
-import {APP_LANGUAGE} from '../consts/appLanguage.ts';
+import {
+  convertOptionNameFromI18ToLuxon,
+} from './convertOptionNameFromI18ToLuxon.ts';
 
 export const formatToLocalDate = (
   secs: number,
   zone: string,
-  format?: string,
+  dayOnly?: boolean,
 ) => {
-  const locale = i18next.language === APP_LANGUAGE.UA ? 'uk' : 'en';
-
-  const localDate = DateTime.fromSeconds(secs)
-    .setZone(zone)
-    .toFormat(format ? format : "EEEE, DD'", {
-      locale: locale,
-    });
-  return localDate;
+  const locale = convertOptionNameFromI18ToLuxon();
+if (dayOnly) {
+   return DateTime
+       .fromSeconds(secs)
+       .setLocale(locale)
+       .toLocaleString({ weekday: 'short'});
+} else {
+ return  DateTime
+     .fromSeconds(secs)
+     .setZone(zone)
+     .setLocale(locale)
+     .toLocaleString({ year:'numeric', weekday: 'long', month: 'short', day: '2-digit'});
+}
 };

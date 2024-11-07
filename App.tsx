@@ -113,7 +113,6 @@ function App(): React.JSX.Element {
                   items={weather.dailyForecast}
                   title={t('Daily')}
                 />
-                <Footer />
               </>
             ) : (
               <View>
@@ -121,8 +120,10 @@ function App(): React.JSX.Element {
                   size="large"
                   color={globalTextColors.lightColor.color}
                 />
+
               </View>
             )}
+            <Footer />
           </View>
         </ScrollViewProvider>
         <ToastManager animationStyle={'rightInOut'} style={styles.toast} />

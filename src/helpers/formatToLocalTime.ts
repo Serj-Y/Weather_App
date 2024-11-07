@@ -1,22 +1,18 @@
 import {DateTime} from 'luxon';
 import {APP_MEASURE_UNITS} from '../consts/appMeasureUnits.ts';
-import i18next from 'i18next';
-import {APP_LANGUAGE} from '../consts/appLanguage.ts';
+import {convertOptionNameFromI18ToLuxon} from './convertOptionNameFromI18ToLuxon.ts';
 
 export const formatToLocalTime = (
   secs: number,
-  zone: string,
+  zone?: string,
   appMeasureUnit?: string,
 ) => {
-  const h12 = 'hh:mm a';
-  const h24 = 'HH:mm';
-  const h12h24 = appMeasureUnit === APP_MEASURE_UNITS.METRIC ? h24 : h12;
-  const locale = i18next.language === APP_LANGUAGE.UA ? 'uk' : 'en';
+  const is12h = appMeasureUnit === APP_MEASURE_UNITS.IMPERIAL;
+  const locale = convertOptionNameFromI18ToLuxon();
 
-  const localTime = DateTime.fromSeconds(secs)
+  return DateTime.fromSeconds(secs)
     .setZone(zone)
-    .toFormat(`${h12h24}`, {locale: locale})
+    .setLocale(locale)
+    .toLocaleString({hour: '2-digit', minute: '2-digit', hour12: is12h})
     .toUpperCase();
-
-  return localTime;
 };
