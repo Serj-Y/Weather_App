@@ -13,16 +13,22 @@ import {HAPTIC_FEEDBACK, HapticFeedback} from '../utils/hapticFeedback.ts';
 export default function Footer() {
   const {t, i18n} = useTranslation();
   const i18CurrentLang = i18n.language;
-  const handleChangeLanguageToEN = () => {
-    i18n.changeLanguage(APP_LANGUAGE.EN);
+  // const handleChangeLanguageToEN = () => {
+  //   i18n.changeLanguage(APP_LANGUAGE.EN);
+  //   Toast.success(t('ChangeLang'));
+  //   storeStringData({key: 'AppLang', value: APP_LANGUAGE.EN});
+  //   HapticFeedback({feedbackType: HAPTIC_FEEDBACK.SUCCESS});
+  // };
+  // const handleChangeLanguageToUA = () => {
+  //   i18n.changeLanguage(APP_LANGUAGE.UA);
+  //   Toast.success(t('ChangeLang'));
+  //   storeStringData({key: 'AppLang', value: APP_LANGUAGE.UA});
+  //   HapticFeedback({feedbackType: HAPTIC_FEEDBACK.SUCCESS});
+  // };
+  const handleChangeLanguage = (language: any) => {
+    i18n.changeLanguage(language);
     Toast.success(t('ChangeLang'));
-    storeStringData({key: 'AppLang', value: APP_LANGUAGE.EN});
-    HapticFeedback({feedbackType: HAPTIC_FEEDBACK.SUCCESS});
-  };
-  const handleChangeLanguageToUA = () => {
-    i18n.changeLanguage(APP_LANGUAGE.UA);
-    Toast.success(t('ChangeLang'));
-    storeStringData({key: 'AppLang', value: APP_LANGUAGE.UA});
+    storeStringData({key: 'AppLang', value: language});
     HapticFeedback({feedbackType: HAPTIC_FEEDBACK.SUCCESS});
   };
 
@@ -49,13 +55,13 @@ export default function Footer() {
           />
           <PressableOpacity
             disabled={i18CurrentLang === APP_LANGUAGE.UA}
-            onPress={handleChangeLanguageToUA}>
+            onPress={() => handleChangeLanguage(APP_LANGUAGE.UA)}>
             <Text style={globalStyles.textMLightColor}>UA</Text>
           </PressableOpacity>
           <Text style={globalStyles.textSLightColor}>|</Text>
           <PressableOpacity
             disabled={i18CurrentLang === APP_LANGUAGE.EN}
-            onPress={handleChangeLanguageToEN}>
+            onPress={() => handleChangeLanguage(APP_LANGUAGE.EN)}>
             <Text style={globalStyles.textMLightColor}>EN</Text>
           </PressableOpacity>
         </View>
