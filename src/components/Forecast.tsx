@@ -15,9 +15,8 @@ import {
   globalVerticalMargin,
 } from '../style/GlobalStyles.tsx';
 import HrLine from './HrLine.tsx';
-import {convertTime} from '../helpers/convertTime.ts';
-import {convertTemperatureUnits} from '../helpers/convertTemperatureUnits.ts';
 import {APP_MEASURE_UNITS} from '../consts/appMeasureUnits.ts';
+import {Convert} from '../helpers/Convert.ts';
 
 type PropsType = {
   title: string;
@@ -50,14 +49,14 @@ export default function Forecast({title, items, appMeasureUnit}: PropsType) {
             <Text
               style={[globalStyles.textSLightColor, globalFontWeight.light]}>
               {item.title.length > 6 ? (
-                convertTime(item.title, appMeasureUnit)
+                Convert.time12HTo24H(item.title, appMeasureUnit)
               ) : (
                 <Text style={{textTransform: 'capitalize'}}>{item.title}</Text>
               )}
             </Text>
             <Image style={styles.image} source={{uri: `https:${item.icon}`}} />
             <Text style={[globalStyles.textSLightColor, globalFontWeight.bold]}>
-              {convertTemperatureUnits(item.temp, appMeasureUnit)}
+              {Convert.tempFromCelsius(item.temp, appMeasureUnit)}
             </Text>
           </View>
         )}

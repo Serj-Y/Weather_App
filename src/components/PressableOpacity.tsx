@@ -7,7 +7,7 @@ type PressableOpacityProps = {
   onPress: () => void;
   onLongPress?: () => void;
   disabled?: boolean;
-  style?: StyleProp<TouchableOpacity | any>;
+  style?: StyleProp<any>;
   key?: string;
 };
 function PressableOpacity({
@@ -36,12 +36,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginHorizontal: globalHorizontalMargin.normal.marginHorizontal,
+    padding:2,
   },
   defaultDisabledStyle: {
     justifyContent: 'center',
     alignItems: 'center',
     marginHorizontal: globalHorizontalMargin.normal.marginHorizontal,
     opacity: 0.5,
+    padding:2,
   },
 });
 

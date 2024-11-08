@@ -1,6 +1,7 @@
 import {WeatherDataType} from '../types/Types';
 import {DateTime} from 'luxon';
 import {formatToLocalDate} from '../helpers/formatToLocalDate.ts';
+import {Convert} from '../helpers/Convert.ts';
 
 export class WeatherFormattedData {
   private weather: WeatherDataType;
@@ -50,7 +51,7 @@ export class WeatherFormattedData {
     let {tz_id, forecast} = this.weather;
     const formatted = forecast.forecastday.map(d => {
       return {
- title: formatToLocalDate(d.date_epoch, tz_id, true),
+        title: Convert.fromDateEpochToDay(d.date_epoch, tz_id),
         temp: d.day.maxtemp_c,
         icon: d.day.condition.icon,
       };

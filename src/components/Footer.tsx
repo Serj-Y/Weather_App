@@ -13,19 +13,8 @@ import {HAPTIC_FEEDBACK, HapticFeedback} from '../utils/hapticFeedback.ts';
 export default function Footer() {
   const {t, i18n} = useTranslation();
   const i18CurrentLang = i18n.language;
-  // const handleChangeLanguageToEN = () => {
-  //   i18n.changeLanguage(APP_LANGUAGE.EN);
-  //   Toast.success(t('ChangeLang'));
-  //   storeStringData({key: 'AppLang', value: APP_LANGUAGE.EN});
-  //   HapticFeedback({feedbackType: HAPTIC_FEEDBACK.SUCCESS});
-  // };
-  // const handleChangeLanguageToUA = () => {
-  //   i18n.changeLanguage(APP_LANGUAGE.UA);
-  //   Toast.success(t('ChangeLang'));
-  //   storeStringData({key: 'AppLang', value: APP_LANGUAGE.UA});
-  //   HapticFeedback({feedbackType: HAPTIC_FEEDBACK.SUCCESS});
-  // };
-  const handleChangeLanguage = (language: any) => {
+
+  const handleChangeLanguage = (language: APP_LANGUAGE) => {
     i18n.changeLanguage(language);
     Toast.success(t('ChangeLang'));
     storeStringData({key: 'AppLang', value: language});
