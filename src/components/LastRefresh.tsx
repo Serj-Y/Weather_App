@@ -4,7 +4,7 @@ import {globalFontWeight, globalStyles} from '../style/GlobalStyles.tsx';
 import {useEffect, useState} from 'react';
 import {is24HourFormat} from 'react-native-device-time-format';
 import {APP_MEASURE_UNITS} from '../consts/appMeasureUnits.ts';
-import {formatToLocalTime} from '../helpers/formatToLocalTime.ts';
+import {Convert} from '../helpers/Convert.ts';
 
 type LastRefreshProps = {
   lastUpdateInSeconds: number;
@@ -21,7 +21,7 @@ export const LastRefresh = ({lastUpdateInSeconds}: LastRefreshProps) => {
 
   const format = is24h ? APP_MEASURE_UNITS.METRIC : APP_MEASURE_UNITS.IMPERIAL;
 
-  const lastUpdate = formatToLocalTime(lastUpdateInSeconds, undefined, format );
+  const lastUpdate = Convert.fromLocaltimeEpochToHour(lastUpdateInSeconds, undefined, format);
 
   return (
     <View style={styles.mainSection}>

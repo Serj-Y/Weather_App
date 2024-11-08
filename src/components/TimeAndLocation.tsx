@@ -7,10 +7,9 @@ import {
   globalTextColors,
   globalVerticalMargin,
 } from '../style/GlobalStyles.tsx';
-import {formatToLocalTime} from '../helpers/formatToLocalTime.ts';
 import {APP_MEASURE_UNITS} from '../consts/appMeasureUnits.ts';
-import {formatToLocalDate} from '../helpers/formatToLocalDate.ts';
 import {useTranslation} from 'react-i18next';
+import {Convert} from '../helpers/Convert.ts';
 
 export type TimeAndLocationPropsType = {
   weather: WeatherType;
@@ -31,12 +30,12 @@ export const TimeAndLocation = ({
             globalFontWeight.light,
             {textTransform: 'capitalize'},
           ]}>
-          {formatToLocalDate(localtime_epoch, tz_id)}
+          {Convert.fromLocaltimeToFullDate(localtime_epoch, tz_id)}
         </Text>
         <Text style={[globalStyles.textMLightColor, globalFontWeight.light]}>
           {' | '}
           {t('LocalTime')}
-          {formatToLocalTime(localtime_epoch, tz_id, appMeasureUnit)}
+          {Convert.fromLocaltimeEpochToHour(localtime_epoch, tz_id, appMeasureUnit)}
         </Text>
       </View>
       <View style={styles.section}>
