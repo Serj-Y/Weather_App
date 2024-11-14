@@ -36,14 +36,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginHorizontal: globalHorizontalMargin.normal.marginHorizontal,
-    padding:2,
+    padding:1,
   },
   defaultDisabledStyle: {
     justifyContent: 'center',
     alignItems: 'center',
     marginHorizontal: globalHorizontalMargin.normal.marginHorizontal,
     opacity: 0.5,
-    padding:2,
+    padding:1,
   },
 });
 

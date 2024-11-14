@@ -54,7 +54,7 @@ export default function Index() {
     }, [hasLocationPermission, setIsLoading, setQuery]);
 
     return (
-        // <DiagonalGradient>
+        <DiagonalGradient>
             <SafeAreaView style={styles.mainContainer}>
                 <StatusBar
                     barStyle={isDarkMode ? 'light-content' : 'dark-content'}
@@ -127,7 +127,7 @@ export default function Index() {
                 </ScrollViewProvider>
                 <ToastManager animationStyle={'rightInOut'} style={styles.toast} />
             </SafeAreaView>
-        // </DiagonalGradient>
+         </DiagonalGradient>
     );
 }
 
