@@ -24,7 +24,9 @@
       },
       "permissions": [
         "INTERNET",
-        "GEOLOCATION"
+        "GEOLOCATION",
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION"
       ],
       "package": "com.anonymous.Weather"
     },
@@ -54,6 +56,14 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "7d67ddf2-75f2-4fe9-9246-e99f94682ea3"
+      }
     }
   }
 }

@@ -31,6 +31,12 @@
           <string>com.anonymous.Weather</string>
         </array>
       </dict>
+      <dict>
+        <key>CFBundleURLSchemes</key>
+        <array>
+          <string>exp+weather</string>
+        </array>
+      </dict>
     </array>
     <key>CFBundleVersion</key>
     <string>1</string>
@@ -45,6 +51,12 @@
       <key>NSAllowsLocalNetworking</key>
       <true/>
     </dict>
+    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>Allow $(PRODUCT_NAME) to use your location.</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>This app requires access to your location when open.</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>This app requires access to your location when open.</string>
     <key>NSUserActivityTypes</key>
     <array>
       <string>$(PRODUCT_BUNDLE_IDENTIFIER).expo.index_route</string>
