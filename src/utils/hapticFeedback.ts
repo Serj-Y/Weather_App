@@ -9,12 +9,11 @@ type HapticFeedbackProps = {
   feedbackType: HAPTIC_FEEDBACK;
 };
 
-const options = {
-  enableVibrateFallback: true,
-  ignoreAndroidSystemSettings: true,
-};
-
 export const HapticFeedback = ({feedbackType}: HapticFeedbackProps) => {
-  Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
-  // trigger(feedbackType, options);
+  if(feedbackType === HAPTIC_FEEDBACK.SUCCESS){
+    Haptics.notificationAsync( Haptics.NotificationFeedbackType.Success)
+  } else if(feedbackType === HAPTIC_FEEDBACK.ERROR){
+    Haptics.notificationAsync( Haptics.NotificationFeedbackType.Error)
+  }
+  Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning)
 };
