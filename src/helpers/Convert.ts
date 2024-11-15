@@ -1,6 +1,6 @@
 import i18next from 'i18next';
-import {APP_LANGUAGE} from '../consts/appLanguage.ts';
-import {APP_MEASURE_UNITS} from '../consts/appMeasureUnits.ts';
+import {APP_LANGUAGE} from '../consts/appLanguage';
+import {APP_MEASURE_UNITS} from '../consts/appMeasureUnits';
 import {DateTime} from 'luxon';
 
 

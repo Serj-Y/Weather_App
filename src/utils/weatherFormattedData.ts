@@ -1,7 +1,6 @@
 import {WeatherDataType} from '../types/Types';
 import {DateTime} from 'luxon';
-import {formatToLocalDate} from '../helpers/formatToLocalDate.ts';
-import {Convert} from '../helpers/Convert.ts';
+import {Convert} from '../helpers/Convert';
 
 export class WeatherFormattedData {
   private weather: WeatherDataType;

@@ -4,10 +4,10 @@ import {
   globalFontWeight,
   globalHorizontalMargin,
   globalStyles,
-} from '../style/GlobalStyles.tsx';
+} from '../style/GlobalStyles';
 import PressableOpacity from './PressableOpacity';
-import {HAPTIC_FEEDBACK, HapticFeedback} from '../utils/hapticFeedback.ts';
-import {MAX_FAVORITE_LENGTH} from '../consts/appMinMaxLength.ts';
+import {HAPTIC_FEEDBACK, HapticFeedback} from '../utils/hapticFeedback';
+import {MAX_FAVORITE_LENGTH} from '../consts/appMinMaxLength';
 import {useTranslation} from 'react-i18next';
 
 type TopButtonType = {

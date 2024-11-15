@@ -8,10 +8,10 @@ import {
   globalTextColors,
   globalVerticalMargin,
   globalVerticalPadding,
-} from '../style/GlobalStyles.tsx';
+} from '../style/GlobalStyles';
 import Icon from 'react-native-vector-icons/Feather';
-import {APP_MEASURE_UNITS} from '../consts/appMeasureUnits.ts';
-import {Convert} from '../helpers/Convert.ts';
+import {APP_MEASURE_UNITS} from '../consts/appMeasureUnits';
+import {Convert} from '../helpers/Convert';
 
 type PropsType = {
   weather: {

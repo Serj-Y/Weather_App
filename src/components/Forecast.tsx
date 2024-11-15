@@ -13,10 +13,10 @@ import {
   globalHorizontalMargin,
   globalStyles,
   globalVerticalMargin,
-} from '../style/GlobalStyles.tsx';
-import HrLine from './HrLine.tsx';
-import {APP_MEASURE_UNITS} from '../consts/appMeasureUnits.ts';
-import {Convert} from '../helpers/Convert.ts';
+} from '../style/GlobalStyles';
+import HrLine from './HrLine';
+import {APP_MEASURE_UNITS} from '../consts/appMeasureUnits';
+import {Convert} from '../helpers/Convert';
 
 type PropsType = {
   title: string;

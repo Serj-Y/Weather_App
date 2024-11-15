@@ -1,4 +1,4 @@
-import {readingStoredObjectData} from '../asyncStorage/readingStoredObjectData.ts';
+import {readingStoredObjectData} from '../asyncStorage/readingStoredObjectData';
 import {Dispatch, SetStateAction} from 'react';
 
 export const GetAppFavoriteListFromStorage = (

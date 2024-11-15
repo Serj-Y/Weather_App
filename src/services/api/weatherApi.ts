@@ -1,10 +1,10 @@
 import {WeatherFormattedData} from '../../utils/weatherFormattedData';
 import axios from 'axios';
-import {HAPTIC_FEEDBACK, HapticFeedback} from '../../utils/hapticFeedback.ts';
+import {HAPTIC_FEEDBACK, HapticFeedback} from '../../utils/hapticFeedback';
 
 const API_KEY = '91bb73b14b5546859b4102417233108';
 const BASE_URL = 'https://api.weatherapi.com/v1/forecast.json?';
-const CITY_DEFAULT = 'Kyiv';
+const CITY_DEFAULT = 'London';
 const LANG_DEFAULT = 'en';
 
 let instance: WeatherApi | undefined;
@@ -59,7 +59,7 @@ export class WeatherApi {
           error: null,
         };
       }
-    } catch  {
+    } catch(error)  {
       HapticFeedback({feedbackType: HAPTIC_FEEDBACK.ERROR});
       throw new Error('CityNotFound');
     }

@@ -1,0 +1,26 @@
+{
+  "images" : [
+    {
+      "filename" : "App-Icon-1024x1024@1x.png",
+      "idiom" : "universal",
+      "resizing" : {
+        "cap-insets" : {
+          "bottom" : 512,
+          "left" : 511,
+          "right" : 512,
+          "top" : 511
+        },
+        "center" : {
+          "height" : 1,
+          "mode" : "tile",
+          "width" : 1
+        },
+        "mode" : "9-part"
+      }
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

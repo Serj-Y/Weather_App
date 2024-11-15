@@ -1,5 +1,5 @@
-import {readingStoredStringData} from '../asyncStorage/readingStoredStringData.ts';
-import {APP_MEASURE_UNITS} from '../../consts/appMeasureUnits.ts';
+import {readingStoredStringData} from '../asyncStorage/readingStoredStringData';
+import {APP_MEASURE_UNITS} from '../../consts/appMeasureUnits';
 
 export const GetAppMeasureUnitsFromStorage = (
   setMeasureUnit: (value: APP_MEASURE_UNITS) => void,

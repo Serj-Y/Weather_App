@@ -1,12 +1,12 @@
 import Icon from 'react-native-vector-icons/Feather';
-import PressableOpacity from './PressableOpacity.tsx';
-import {globalTextColors} from '../style/GlobalStyles.tsx';
+import PressableOpacity from './PressableOpacity';
+import {globalTextColors} from '../style/GlobalStyles';
 import {View} from 'react-native';
-import {storeObjectData} from '../services/asyncStorage/storeObjectData.ts';
-import {HAPTIC_FEEDBACK, HapticFeedback} from '../utils/hapticFeedback.ts';
+import {storeObjectData} from '../services/asyncStorage/storeObjectData';
+import {HAPTIC_FEEDBACK, HapticFeedback} from '../utils/hapticFeedback';
 import {Toast} from 'toastify-react-native';
 import {useTranslation} from 'react-i18next';
-import {MAX_FAVORITE_LENGTH} from '../consts/appMinMaxLength.ts';
+import {MAX_FAVORITE_LENGTH} from '../consts/appMinMaxLength';
 
 type AddToFavoriteProps = {
   city: string;

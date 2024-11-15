@@ -1,6 +1,6 @@
 import {StyleProp, StyleSheet, TouchableOpacity} from 'react-native';
 import React from 'react';
-import {globalHorizontalMargin} from '../style/GlobalStyles.tsx';
+import {globalHorizontalMargin} from '../style/GlobalStyles';
 
 type PressableOpacityProps = {
   children: React.ReactNode;
@@ -36,14 +36,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginHorizontal: globalHorizontalMargin.normal.marginHorizontal,
-    padding:2,
+    padding:1.5,
   },
   defaultDisabledStyle: {
     justifyContent: 'center',
     alignItems: 'center',
     marginHorizontal: globalHorizontalMargin.normal.marginHorizontal,
     opacity: 0.5,
-    padding:2,
+    padding:1.5,
   },
 });
 

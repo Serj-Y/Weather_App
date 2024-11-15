@@ -6,15 +6,15 @@ import {
   globalHorizontalMargin,
   globalStyles,
   globalTextColors,
-} from '../style/GlobalStyles.tsx';
+} from '../style/GlobalStyles';
 import Icon from 'react-native-vector-icons/Feather';
 import {Toast} from 'toastify-react-native';
-import {GetCordinates} from '../services/geolocation/getCordinates.ts';
-import {storeStringData} from '../services/asyncStorage/storeStringData.ts';
-import {APP_MEASURE_UNITS} from '../consts/appMeasureUnits.ts';
-import PressableOpacity from './PressableOpacity.tsx';
-import {HAPTIC_FEEDBACK, HapticFeedback} from '../utils/hapticFeedback.ts';
-import {MIN_SEARCH_INPUT_LENGTH} from '../consts/appMinMaxLength.ts';
+import {GetCordinates} from '../services/geolocation/getCordinates';
+import {storeStringData} from '../services/asyncStorage/storeStringData';
+import {APP_MEASURE_UNITS} from '../consts/appMeasureUnits';
+import PressableOpacity from './PressableOpacity';
+import {HAPTIC_FEEDBACK, HapticFeedback} from '../utils/hapticFeedback';
+import {MIN_SEARCH_INPUT_LENGTH} from '../consts/appMinMaxLength';
 
 type PropsType = {
   setQuery: (city: string) => void;

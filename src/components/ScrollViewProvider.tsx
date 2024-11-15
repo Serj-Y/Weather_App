@@ -1,6 +1,6 @@
 import {RefreshControl, ScrollView} from 'react-native';
 import React from 'react';
-import {HAPTIC_FEEDBACK, HapticFeedback} from '../utils/hapticFeedback.ts';
+import {HAPTIC_FEEDBACK, HapticFeedback} from '../utils/hapticFeedback';
 
 type ScrollViewProviderProps = {
   children: React.ReactNode;

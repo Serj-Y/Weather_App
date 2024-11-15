@@ -1,14 +1,14 @@
 import React from 'react';
 import {useTranslation} from 'react-i18next';
 import {Linking, StyleSheet, Text, View} from 'react-native';
-import {globalStyles, globalTextColors} from '../style/GlobalStyles.tsx';
+import {globalStyles, globalTextColors} from '../style/GlobalStyles';
 import Icon from 'react-native-vector-icons/Feather';
 import {Toast} from 'toastify-react-native';
-import HrLine from './HrLine.tsx';
-import {APP_LANGUAGE} from '../consts/appLanguage.ts';
-import {storeStringData} from '../services/asyncStorage/storeStringData.ts';
-import PressableOpacity from './PressableOpacity.tsx';
-import {HAPTIC_FEEDBACK, HapticFeedback} from '../utils/hapticFeedback.ts';
+import HrLine from './HrLine';
+import {APP_LANGUAGE} from '../consts/appLanguage';
+import {storeStringData} from '../services/asyncStorage/storeStringData';
+import PressableOpacity from './PressableOpacity';
+import {HAPTIC_FEEDBACK, HapticFeedback} from '../utils/hapticFeedback';
 
 export default function Footer() {
   const {t, i18n} = useTranslation();

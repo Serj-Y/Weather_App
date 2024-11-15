@@ -3,7 +3,7 @@ import {WeatherApi} from '../services/api/weatherApi';
 import {WeatherType} from '../types/Types';
 import {Toast} from 'toastify-react-native';
 import {useTranslation} from 'react-i18next';
-import {HAPTIC_FEEDBACK, HapticFeedback} from '../utils/hapticFeedback.ts';
+import {HAPTIC_FEEDBACK, HapticFeedback} from '../utils/hapticFeedback';
 
 export const useWeather = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -11,7 +11,6 @@ export const useWeather = () => {
   const [weather, setWeather] = useState<WeatherType>();
   const [query, setQuery] = useState('');
   const {t} = useTranslation();
-
   useEffect(() => {
     setIsLoading(true);
     if (query) {

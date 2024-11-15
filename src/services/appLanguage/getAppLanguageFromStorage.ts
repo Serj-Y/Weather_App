@@ -1,6 +1,6 @@
 import i18next from 'i18next';
-import {readingStoredStringData} from '../asyncStorage/readingStoredStringData.ts';
-import {APP_LANGUAGE} from '../../consts/appLanguage.ts';
+import {readingStoredStringData} from '../asyncStorage/readingStoredStringData';
+import {APP_LANGUAGE} from '../../consts/appLanguage';
 
 export const GetAppLanguageFromStorage = () => {
   readingStoredStringData('AppLang').then(res =>

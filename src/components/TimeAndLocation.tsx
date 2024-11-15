@@ -6,10 +6,10 @@ import {
   globalStyles,
   globalTextColors,
   globalVerticalMargin,
-} from '../style/GlobalStyles.tsx';
-import {APP_MEASURE_UNITS} from '../consts/appMeasureUnits.ts';
+} from '../style/GlobalStyles';
+import {APP_MEASURE_UNITS} from '../consts/appMeasureUnits';
 import {useTranslation} from 'react-i18next';
-import {Convert} from '../helpers/Convert.ts';
+import {Convert} from '../helpers/Convert';
 
 export type TimeAndLocationPropsType = {
   weather: WeatherType;

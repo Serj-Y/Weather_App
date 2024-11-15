@@ -1,6 +1,6 @@
 import i18next from 'i18next';
 import {initReactI18next} from 'react-i18next';
-import {APP_LANGUAGE} from '../../consts/appLanguage.ts';
+import {APP_LANGUAGE} from '../../consts/appLanguage';
 import en from './locales/en.json';
 import ua from './locales/ua.json';
 
